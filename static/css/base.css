@@ -1,3 +1,25 @@
+html {
+    height: 100%;
+  }
+
+body {
+    padding: 0;
+    margin: 0;
+    margin-top: 80px;
+  }
+
+header {
+    position: relative;
+    z-index: 50;
+    background: white;
+    }
+
 h1 {
-    color: red;
+    color: green;
 }
+
+/* footer section in base.html */
+.footer {
+    position: relative;
+    z-index: 1000;
+  }

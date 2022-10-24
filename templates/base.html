@@ -67,16 +67,16 @@
                                 <li><a href="" aria-label="add product" class="dropdown-item">Add Product</a></li>
                                 <li><a href="{% url 'admin:index' %}" aria-label="admin panel" class="dropdown-item">Admin Panel</a></li>
                                 
-                                <li><a class="dropdown-item" aria-label="log out" href="">Log Out</a></li>
+                                <li><a class="dropdown-item" aria-label="log out" href="{% url 'account_logout' %}">Log Out</a></li>
                             </ul>
                         </li>
                         <!-- if not signed in -->
                     
                         <li class="list-inline-item">
-                            <a href="" aria-label="register" class="btn mb-3 btn1">Register</a>
+                            <a href="{% url 'account_signup' %}" aria-label="register" class="btn mb-3 btn1">Register</a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="" aria-label="log in" class="btn mb-3 btn1">Log In</a>
+                            <a href="{% url 'account_login' %}" aria-label="log in" class="btn mb-3 btn1">Log In</a>
                         </li>
                     
                 </ul>
@@ -107,12 +107,9 @@
     {% endblock %}
 
     <!-- footer displaying name of golf club and contains 4 social media links -->
-    <footer class="footer bg-dark">
-        <h2 class="text-white text-center mt-3">Connect online!</h2>
-        <div class="row">
-            
-        </div>
-            <p class="m-0 text-capitalize text-center text-white py-2">&copy; Recipe Master | Designed by Adam Pillis</p>
+    <footer class="mt-auto fixed-bottom bg-dark">
+        <div class="footer">        
+            <p class="m-0 text-capitalize text-center text-white py-2">&copy; Recipe Master 2022 | Designed by Adam Pillis</p>
         </div>
     </footer>
     {% block postloadjs %}

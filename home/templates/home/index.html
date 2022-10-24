@@ -11,7 +11,26 @@
 
 {% block content %}">
     <section class="container-fluid">
-        <h1 class="text-center">Hello Pillis</h1>
+        <h1 class="text-center">Hello Pillis. Let's get planning</h1>
+        {% if request.user.is_authenticated %}
+            <div class="row">
+                <div class="col-12 text-center mt-5">
+                    <h3>You're logged in. This is when all the categories will be displayed </h3>
+
+                    <h5>If logged in as superuser, top nav bar will show options to add category..recipe bla bla</h5>
+
+                    <p>Only superuser can create account for other users.</p>
+
+                    <h6>Option for others is just view category - receipes - enter quantity - NOTHING ELSE</h6>
+                </div>
+            </div>
+        {% else %}  
+        <div class="row">
+            <div class="col-12 text-center mt-5">
+                <h3>You're logged out. Background image with options to log in. No other functions</h3>
+            </div>
+        </div>
+        {% endif %}
     </section>
 
 {% endblock %}
