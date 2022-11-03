@@ -16,12 +16,15 @@ class CategoryAdmin(admin.ModelAdmin):
 class IngredientAdmin(admin.ModelAdmin):
     """To customise ingredient view via admin panel"""
     list_display = (
+        'recipe',
         'name',
+        'amount',
+        'quantity_type',
     )
     search_fields = ['name']
 
 
-class RecipeAdmin(admin.ModelAdmin):
+class RecipeAdmin(SummernoteModelAdmin):
     """All recipes in admin panel"""
     list_display = (
         'category',
@@ -33,7 +36,7 @@ class RecipeAdmin(admin.ModelAdmin):
         'image',
     )
     search_fields = ['name']
-    summernote_fields = ('tools_required')
+    summernote_fields = ('tools_required', 'step_guide')
 
 
 admin.site.register(Category, CategoryAdmin)
