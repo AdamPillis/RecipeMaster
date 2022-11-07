@@ -39,7 +39,7 @@
         <div class="row d-block d-lg-none">
                 <div class="col-12">
                     <a href="{% url 'home' %}" aria-label="Reload home page">
-                        <h2 class="logo-font mt-2 text-center">Golf|<i class="fas fa-coins"></i>|Mania</h2>
+                        <h2 class="logo-font mt-2 text-center">Recipe|<i class="fas fa-ice-cream"></i>|Master</h2>
                     </a>
                 </div>
             
@@ -48,13 +48,28 @@
         <div class="row pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" aria-label="Reload home page" class="nav-link main-logo-link">
-                    <h2 class="logo-font">Recipe|<i class="fas fa-coins"></i>|Master</h2>
+                    <h2 class="logo-font">Recipe|<i class="fas fa-ice-cream"></i>|Master</h2>
                 </a>
+            </div>
+            <!-- Seach bar to control entered search criteria -->
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <form method="GET" action="">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black rounded-2" type="text" name="search" placeholder="Search RecipeMaster">
+                        <div class="input-group-append">
+                            <button class="form-control border rounded-2" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <!-- if user is signed in, display icon as dropdown list -->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                    
+                        {% if request.user.is_authenticated %}
                         <li class="list-inline-item dropdown me-5">
                             <a class="text-decoration-none" aria-label="dropwdown for my account" role="button" href="#" id="dropdownAccountMenu" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div><i class="fas fa-user fa-lg"></i></div>
@@ -66,21 +81,48 @@
                                 
                                 <li><a href="" aria-label="add product" class="dropdown-item">Add Product</a></li>
                                 <li><a href="{% url 'admin:index' %}" aria-label="admin panel" class="dropdown-item">Admin Panel</a></li>
+
+                                <li class="list-inline-item">
+                                    <a href="{% url 'account_signup' %}" aria-label="register" class="btn mb-3 btn1">Register</a>
+                                </li>
                                 
                                 <li><a class="dropdown-item" aria-label="log out" href="{% url 'account_logout' %}">Log Out</a></li>
                             </ul>
                         </li>
+                        {% else%}
                         <!-- if not signed in -->
-                    
-                        <li class="list-inline-item">
-                            <a href="{% url 'account_signup' %}" aria-label="register" class="btn mb-3 btn1">Register</a>
-                        </li>
                         <li class="list-inline-item">
                             <a href="{% url 'account_login' %}" aria-label="log in" class="btn mb-3 btn1">Log In</a>
                         </li>
+                        {% endif %}
                     
                 </ul>
             </div>
+        </div>
+        <!-- including html structure of header and main nav as includes with a collapsable nav bar -->
+        <div class="row bg-white">
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <button class="navbar-toggler" aria-label="main nav bar button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" 
+                    aria-controls="navbarContent" aria-expanded="false">
+                <i class="mobile-icon fas fa-bars"></i>
+                 </button>            
+                    {% include 'includes/main-nav.html' %}
+            </nav>
+        </div>
+        <!-- Seach bar to control entered search criteria again but full width on smaller screens -->
+        <div class="col-12 col-md-8 mx-auto py-1 d-block d-lg-none">
+            <form method="GET" action="#">
+                <div class="input-group w-100">
+                    <input class="form-control border border-black rounded-2" type="text" name="search" placeholder="Search GolfMania">
+                    <div class="input-group-append">
+                        <button class="form-control btn btn1" aria-label="submit button" type="submit">
+                            <span>
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </header>
     <!-- container in which alert messages will be displayed. 
