@@ -5,17 +5,59 @@ html {
 body {
     padding: 0;
     margin: 0;
-    margin-top: 80px;
+    margin-top: 125px;
+    background-color: rgba(254, 250, 224, 0.4);
   }
+
+  /* setting font styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Gideon Roman', cursive;
+}
+
+p, button, a {
+font-family: 'Raleway', sans-serif;
+font-size: 1.2rem;
+}
+
+a {
+color: rgba(188, 108, 37, 1);
+text-decoration: none;
+}
+a:hover {
+color: rgba(0, 114, 0, 1);
+}
 
 header {
     position: relative;
     z-index: 50;
-    background: white;
+    background: rgba(254, 250, 224, 1);;
     }
 
-h1 {
-    color: green;
+/* index.html */
+.landing-image {
+  height: 90vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.landing-image .container-fluid {
+  background: url('/media/landing-page-image.jpg') center;
+  background-size: cover;
+  margin: 0px auto;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.landing-image .container-fluid .text-center {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;
+  margin: 40px auto;
+  top: 2%;
+  border-radius: 8px;
 }
 
 /* footer section in base.html */
