@@ -5,7 +5,7 @@ html {
 body {
     padding: 0;
     margin: 0;
-    margin-top: 125px;
+    margin-top: 114px;
     background-color: rgba(254, 250, 224, 0.4);
   }
 
@@ -30,8 +30,45 @@ color: rgba(0, 114, 0, 1);
 header {
     position: relative;
     z-index: 50;
-    background: rgba(254, 250, 224, 1);;
+    background: rgba(254, 250, 224, 1);
     }
+
+    /* setting general button design */
+/* design idea from 'Animated CSS Buttons'  */
+.btn{
+  position: relative;
+  color: black;
+  font-size: 14px;
+  font-family: "montserrat";
+  margin: auto ;
+  text-decoration: none;
+  border: 1px solid #BC6C25;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 1s all ease;
+}
+.btn::before{
+  background: #BC6C25;
+  color: white;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+  transition: all 0.5s ease;
+} */
+/* general button hover effect */
+.btn1:hover {
+  color: white;
+}
+.btn1::before{
+  width: 0%;
+  height: 100%;
+}
+.btn1:hover::before{
+  width: 100%;
+}
 
 /* index.html */
 .landing-image {
@@ -55,8 +92,8 @@ header {
 .landing-image .container-fluid .text-center {
   background-color: rgba(0, 0, 0, 0.4);
   position: relative;
-  margin: 40px auto;
-  top: 2%;
+  padding: 20px 0;
+  top: 40%;
   border-radius: 8px;
 }
 

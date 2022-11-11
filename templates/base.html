@@ -46,7 +46,7 @@
             
         </div>
         <!-- top header on larger screens -->
-        <div class="row pt-lg-2 d-none d-lg-flex">
+        <div class="row d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" aria-label="Reload home page" class="nav-link main-logo-link">
                     <h2 class="logo-font">Recipe|<i class="fas fa-ice-cream"></i>|Master</h2>
@@ -84,7 +84,7 @@
                                 <li><a href="{% url 'admin:index' %}" aria-label="admin panel" class="dropdown-item">Admin Panel</a></li>
 
                                 <li class="list-inline-item">
-                                    <a href="{% url 'account_signup' %}" aria-label="register" class="btn mb-3 btn1">Register</a>
+                                    <a href="{% url 'account_signup' %}" aria-label="register" class="dropdown-item">Register</a>
                                 </li>
                                 
                                 <li><a class="dropdown-item" aria-label="log out" href="{% url 'account_logout' %}">Log Out</a></li>
@@ -93,7 +93,7 @@
                         {% else%}
                         <!-- if not signed in -->
                         <li class="list-inline-item">
-                            <a href="{% url 'account_login' %}" aria-label="log in" class="btn mb-3 btn1">Log In</a>
+                            <a href="{% url 'account_login' %}" aria-label="log in" class="btn btn1">Log In</a>
                         </li>
                         {% endif %}
                     
@@ -131,11 +131,11 @@
     <!-- container in which alert messages will be displayed. 
     Classes added to div and dismiss button are django's standard. 
     function in static/js/script.js, disappears message after 3 seconds-->
-    <div class="container mt-5">
+    <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dismissible fade show" id="message"
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" id="message"
                     role="alert">
                 {{ message | safe }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
