@@ -96,6 +96,17 @@ header {
   top: 40%;
   border-radius: 8px;
 }
+/* image styling for categories */
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 5vh auto;
+}
+
+.img-fluid {
+  max-width: 130%;
+}
 
 /* footer section in base.html */
 .footer {
