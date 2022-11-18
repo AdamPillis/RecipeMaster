@@ -11,6 +11,52 @@
 
 {% block content %}
 {% if request.user.is_authenticated %}
+<div class="row my-3 mx-0">
+    <div class="col-12 text-center">
+        <h2>Categories</h2>
+    </div>
+</div>
+<div class="row my-4 mx-0">
+    {% for category in categories %}
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+            <div class="text-center">
+                {% if category.image %}
+                <a aria-label="view product in product details page" class="text-decoration-none" href="#">
+                    <img class="card-img-top img-fluid" src="{{ category.image.url }}" alt="{{ category.name }}">
+                </a>
+                {% else %}
+                <a aria-label="view product with no image in product details page" href="#">
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                </a>
+                {% endif %}
+                <div class="">
+                    <h3 class="mt-3 text-center">{{ category.name }}</h4>                     
+                </div>
+            </div>
+        </div>
+        <!-- full width for each product on smaller screen, two/three on medium and four on large -->
+        {% if forloop.counter|divisibleby:1 %}
+            <div class="col-12 d-sm-none">
+                <hr class="w-75 mx-auto my-4">
+            </div>
+        {% endif %}                        
+        {% if forloop.counter|divisibleby:2 %}
+            <div class="col-12 d-none d-sm-block d-md-block d-lg-none">
+                <hr class="w-75 mx-auto my-4">
+            </div>
+        {% endif %}
+        {% if forloop.counter|divisibleby:3 %}
+            <div class="col-12 d-none d-lg-block d-xl-none">
+                <hr class="w-75 mx-auto my-4">
+            </div>
+        {% endif %}
+        {% if forloop.counter|divisibleby:4 %}
+            <div class="col-12 d-none d-xl-block">
+                <hr class="w-75 mx-auto my-4">
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
 {% else %}
 <!-- landing image section -->
 <div class="landing-image">
@@ -30,45 +76,4 @@
     </div>
 </div>
 {% endif %}
-<div class="row m-0">
-    {% for category in categories %}
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-            <div class="text-center">
-                {% if category.image %}
-                <a aria-label="view product in product details page" class="text-decoration-none" href="#">
-                    <img class="card-img-top img-fluid" src="{{ category.image.url }}" alt="{{ category.name }}">
-                </a>
-                {% else %}
-                <a aria-label="view product with no image in product details page" href="#">
-                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                </a>
-                {% endif %}
-                <div class="">
-                    <h4 class="mb-3 text-center">{{ category.name }}</h4>                     
-                </div>
-            </div>
-        </div>
-        <!-- full width for each product on smaller screen, two/three on medium and four on large -->
-        {% if forloop.counter|divisibleby:1 %}
-            <div class="col-12 d-sm-none mb-5">
-                <hr class="w-75 mx-auto">
-            </div>
-        {% endif %}                        
-        {% if forloop.counter|divisibleby:2 %}
-            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                <hr class="w-75 mx-auto">
-            </div>
-        {% endif %}
-        {% if forloop.counter|divisibleby:3 %}
-            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                <hr class="w-75 mx-auto">
-            </div>
-        {% endif %}
-        {% if forloop.counter|divisibleby:4 %}
-            <div class="col-12 d-none d-xl-block mb-5">
-                <hr class="w-75 mx-auto">
-            </div>
-        {% endif %}
-    {% endfor %}
-</div> -->
 {% endblock %}
