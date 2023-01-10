@@ -1,5 +1,5 @@
 html {
-    height: 100%;
+    
   }
 
 body {
@@ -41,7 +41,7 @@ header {
   font-family: "montserrat";
   margin: auto ;
   text-decoration: none;
-  border: 1px solid #BC6C25;
+  border: 1px solid white;
   text-transform: uppercase;
   overflow: hidden;
   transition: 1s all ease;
