@@ -52,14 +52,18 @@
                 <a href="{% url 'home' %}" aria-label="Reload home page" class="nav-link main-logo-link">
                     <h2 class="logo-font">Recipe|<i class="fas fa-ice-cream"></i>|Master</h2>
                 </a>
-            </div>
+            </div> 
             <!-- Seach bar to control entered search criteria -->
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 mx-lg-auto"> 
+                <button class="form-control trigger_search btn btn1" type="button">Search
+                    <i class="fas fa-search"></i>
+                </button>           
                 <form method="GET" action="">
                     <div class="input-group w-100">
-                        <input class="form-control border border-black rounded-2" type="text" name="search" placeholder="Search RecipeMaster">
+                        <input class="form-control border input" type="text" name="search" placeholder="Search RecipeMaster">
                         <div class="input-group-append">
-                            <button class="form-control border rounded-2" type="submit">
+                            
+                            <button class="form-control submit_button input btn btn1 search_button" type="submit">
                                 <span class="icon">
                                     <i class="fas fa-search"></i>
                                 </span>
@@ -87,6 +91,7 @@
                                 <li><a class="dropdown-item" aria-label="log out" href="{% url 'account_logout' %}">Log Out</a></li>
                             </ul>
                         </li>
+
                         {% else%}
                         <!-- if not signed in -->
                         <li class="list-inline-item">

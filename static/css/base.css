@@ -5,17 +5,18 @@ html {
 body {
     padding: 0;
     margin: 0;
-    background-color: rgba(254, 250, 224, 0.4);
   }
 
   /* setting font styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Gideon Roman', cursive;
+  color: rgba(188, 108, 37, 1);
 }
 
 p, button, a {
 font-family: 'Raleway', sans-serif;
 font-size: 1.2rem;
+color: rgba(188, 108, 37, 1);
 }
 
 a {
@@ -39,9 +40,11 @@ header {
   color: black;
   font-size: 14px;
   font-family: "montserrat";
-  margin: auto ;
+  border-radius: 50%;
+  border: 0;
+  margin: 0 auto;
   text-decoration: none;
-  border: 1px solid white;
+  border: 1px solid #BC6C25;;
   text-transform: uppercase;
   overflow: hidden;
   transition: 1s all ease;
@@ -69,6 +72,23 @@ header {
   width: 100%;
 }
 
+.input {
+  display: none;
+}
+
+.search_button {
+  border: 0;
+  border-radius: 50%;
+  outline: 0;
+  cursor: pointer;
+}
+
+.trigger_search {
+  width: 100px;
+  height: 40px;
+  margin: 0 auto;
+}
+
 /* index.html */
 .landing-image {
   height: 100vh;
@@ -89,7 +109,7 @@ header {
 }
 
 .landing-image .container-fluid .text-center {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   position: relative;
   padding: 20px 0;
   top: 50%;
