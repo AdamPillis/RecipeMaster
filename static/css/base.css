@@ -81,12 +81,17 @@ header {
   border-radius: 50%;
   outline: 0;
   cursor: pointer;
+  height: 40px;
+  width: 40px;
 }
 
 .trigger_search {
-  width: 100px;
+  width: 40px;
   height: 40px;
   margin: 0 auto;
+  border: 0;
+  background-color: transparent;
+  color:rgba(188, 108, 37, 1);
 }
 
 /* index.html */
