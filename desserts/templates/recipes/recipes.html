@@ -10,15 +10,15 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid product-container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col text-center mt-4">
-                <h4 class="fs-1 logo-font">Recipes</h4>
+                <h2 class="fs-1 logo-font">Recipes</h2>
                 <hr class="w-50 my-4 mx-auto">
                 <!-- displaying category type as a clickable button to filter category type -->
                 {% for c in chosen_categories %}
                     <a aria-label="view products in categories" class="btn btn1 text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
-                        <span class="p-2 mt-2 text-black">{{ c.friendly_name }}</span>
+                        <span class="p-2 mt-2 text-black">{{ c.name }}</span>
                     </a>
                 {% endfor %}
                 
@@ -46,48 +46,35 @@
                     </div>
                 </div>
                 <!-- structure and styling of products displaying -->
-                <div class="row">
+                <div class="row my-5">
                     {% for recipe in recipes %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-0">
-                                <div class="card-body pb-0">
-                                    <h5 class="mb-3 logo-font text-center">{{ recipe.name }}</h5>                     
-                                </div>
                                 {% if recipe.image %}
-                                <a aria-label="view product in product details page" class="text-decoration-none" href="{% url 'product_detail' product.id %}">
-                                    <p class="text-center">(<strong>{{recipe.name}}</strong>)</p>
-                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                <a aria-label="view recipe in recipe details page" class="text-decoration-none" href="#">
+                                    <img class="card-img card-img-fluid" src="{{ recipe.image.url }}" alt="{{ product.name }}">
                                 </a>
                                 {% else %}
-                                <a aria-label="view product with no image in product details page" href="{% url 'product_detail' product.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                <a aria-label="view recipe with no image in recipe details page" href="#">
+                                    <img class="card-img card-img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ recipe.name }}">
                                 </a>
                                 {% endif %}
+                                <div class="card-body pb-0">
+                                    <h3 class="mb-3 logo-font text-center">{{ recipe.name }}</h3>                     
+                                </div>
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
-                                        <div class="col my-3">
-                                            <p class="mb-0 logo-font text-center font-weight-bold">
-                                                {% if product.old_price %}
-                                                    <small class="text-decoration-line-through me-3 text-danger fs-5">
-                                                        €{{ product.old_price }}
-                                                    </small>
-                                                {% endif %}
-                                                <strong class="fs-3">€{{ product.price }}</strong>
-                                            </p>
-                                            {% if product.category %}
-                                                <p class="small mt-2 mb-0">
-                                                    <a aria-label="view products in {{ product.category }}" class="text-decoration-none" href="{% url 'products' %}?category={{ product.category.name }}">
-                                                        <i class="fas fa-tag tag-icon mr-1"></i>{{ product.category.friendly_name }}
-                                                    </a>
-                                                </p>
-                                            {% endif %}
-                                            <!-- if user is superuser, display edit and delete options -->
-                                            {% if request.user.is_superuser %}
-                                                <small class="ml-3">
-                                                    <a aria-label="update" class="logo-font fs-6" href="#"><strong>Update</strong></a> |
-                                                    <a aria-label="delete" class="text-danger fs-6" href="#"><strong>Delete</strong></a>
-                                                </small>
-                                            {% endif %}
+                                        <div class="col">
+                                            <small class="mb-0 text-muted">
+                                                Prep time: <strong>{{ recipe.prep_time }}</strong> minutes
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <small class="mb-0 logo-font text-muted">
+                                                Cooking time: <strong>{{ recipe.cooking_time }}</strong> minutes
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
