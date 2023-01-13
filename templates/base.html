@@ -41,7 +41,7 @@
         <div class="row d-block d-lg-none">
                 <div class="col-12">
                     <a href="{% url 'home' %}" aria-label="Reload home page">
-                        <h2 class="logo-font mt-2 text-center">Recipe|<i class="fas fa-ice-cream"></i>|Master</h2>
+                        <h2 class="logo-font p-2 text-center">Recipe|<i class="fas fa-ice-cream"></i>|Master</h2>
                     </a>
                 </div>
             
@@ -82,9 +82,13 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
                                 <li><a class="dropdown-item" aria-label="home page" href="{% url 'home' %}">Home</a></li>
+
+                                <li><a href="{% url 'desserts' %}" aria-label="view all recipes" class="dropdown-item">All Recipes</a></li>
+
                                 <li><a class="dropdown-item" aria-label="add category" href="">Add Category</a></li>
-                                
+
                                 <li><a href="" aria-label="add recipe" class="dropdown-item">Add Recipe</a></li>
+
                                 <li><a href="{% url 'admin:index' %}" aria-label="admin panel" class="dropdown-item">Admin Panel</a></li>
                                 
                                 <li><a class="dropdown-item" aria-label="log out" href="{% url 'account_logout' %}">Log Out</a></li>
@@ -117,10 +121,10 @@
         <div class="col-12 col-md-8 mx-auto py-1 d-block d-lg-none">
             <form method="GET" action="#">
                 <div class="input-group w-100">
-                    <input class="form-control border border-black rounded-2" type="text" name="search" placeholder="Search GolfMania">
+                    <input class="form-control border" type="text" name="search" placeholder="Search RecipeMaster">
                     <div class="input-group-append">
-                        <button class="form-control btn btn1" aria-label="submit button" type="submit">
-                            <span>
+                        <button class="form-control btn btn1" type="submit">
+                            <span class="icon">
                                 <i class="fas fa-search"></i>
                             </span>
                         </button>
