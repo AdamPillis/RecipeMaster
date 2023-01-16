@@ -103,10 +103,25 @@
                         {% endif %}
                     {% endfor %}
                 </div>
+                
             </div>
         </div>
     </div>
+    <!-- back to the top button -->
+    <!-- js to scroll page back to the top -->
+    <!-- css to fix position in bottom right corner -->
+    <div class="btt-button shadow-sm">
+        <a href="#" class="top-btt d-flex h-100">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>
+    </div>
 {% endblock %}
 {% block postloadjs %}
+    <!-- to scroll back to the top if clicked -->
+    <script>
+        $('.top-btt').click(function(e) {
+            window.scrollTo(0,0);
+        });
+    </script>
     <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

@@ -120,17 +120,6 @@ header {
   top: 50%;
   border-radius: 8px;
 }
-/* image styling for categories */
-.card-img-top {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  /* margin: 5vh auto; */
-}
-
-.img-fluid {
-  max-width: 130%;
-}
 
 /* footer section in base.html */
 .footer {
@@ -147,4 +136,31 @@ header {
 
 .card-img-fluid {
   max-width: 130%;
+}
+
+/* recipes.html */
+/* image styling for categories */
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  /* margin: 5vh auto; */
+}
+
+.img-fluid {
+  max-width: 130%;
+}
+/* setting position of back to the top button in products.html */
+.btt-button {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 20%;
+  right: 15px;
+}
+
+.top-btt,
+.update-link,
+.remove-item {
+  cursor: pointer;
 }
