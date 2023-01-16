@@ -17,7 +17,7 @@
                 <hr class="w-50 my-4 mx-auto">
                 <!-- displaying category type as a clickable button to filter category type -->
                 {% for c in chosen_categories %}
-                    <a aria-label="view products in categories" class="btn btn1 text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                    <a aria-label="view recipes in categories" class="btn btn1 text-decoration-none" href="{% url 'recipes' %}?category={{ c.name }}">
                         <span class="p-2 mt-2 text-black">{{ c.name }}</span>
                     </a>
                 {% endfor %}
@@ -29,13 +29,34 @@
         <div class="row">
             <div class="col-10 offset-1">
                 <div class="row mt-1 mb-2">
-                    <div class="col-12 col-md-6 order-md-first">
-                        <p class="text-black mt-3 text-center text-md-left">                                                    
-                            <!-- django length template filter used to count all found landing page -->
-                            <!-- displays for filtered and if statement if searched -->
-                            Showing <strong class="logo-font">{{ recipes|length }}</strong> recipes{% if search_word %} found for <strong>"{{ search_word }}"</strong>{% else %} for your search{% endif %}
-                        </p>
-                    </div>
+                        <div class="col-12 col-md-6 my-auto mt-3 order-md-last d-flex justify-content-center justify-content-md-end">
+                            <div class="sort-select-wrapper w-75">
+                                <select id="sort-selector" class="custom-select w-100 custom-select-sm btn{% if chosen_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                    <option value="reset" {% if chosen_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                                    <option value="price_asc" {% if chosen_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                                    <option value="price_desc" {% if chosen_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                                    <option value="rating_asc" {% if chosen_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                                    <option value="rating_desc" {% if chosen_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                                    <option value="name_asc" {% if chosen_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                                    <option value="name_desc" {% if chosen_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                                    <option value="category_asc" {% if chosen_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                                    <option value="category_desc" {% if chosen_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                                    <option value="brand_asc" {% if chosen_sorting == 'brand_asc' %}selected{% endif %}>Brand (A-Z)</option>
+                                    <option value="brand_desc" {% if chosen_sorting == 'brand_desc' %}selected{% endif %}>Brand (Z-A)</option>
+                                    <option value="type_asc" {% if chosen_sorting == 'type_asc' %}selected{% endif %}>Type (New-Used)</option>
+                                    <option value="type_desc" {% if chosen_sorting == 'type_desc' %}selected{% endif %}>Type (Used-New)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-first">
+                            <p class="text-black mt-3 text-center text-md-left">                                                    
+                                <!-- django length template filter used to count all found landing page -->
+                                <!-- displays for filtered and if statement if searched -->
+                                Showing <strong class="logo-font">{{ recipes|length }}</strong> recipes{% if search_word %} found for <strong>"{{ search_word }}"</strong>{% else %} for your search{% endif %}
+                            </p>
+                        </div>
+                        
+                    
                 </div>
                 <!-- Back to Home button at the top for user to return to landing page -->
                 <div class="row">
