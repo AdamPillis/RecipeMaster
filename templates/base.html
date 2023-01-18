@@ -58,7 +58,7 @@
                 <button class="form-control trigger_search btn1" type="button">
                     <i class="fas fa-search"></i>
                 </button>           
-                <form method="GET" action="{% url 'desserts' %}">
+                <form method="GET" action="{% url 'recipes' %}">
                     <div class="input-group w-100">
                         <input class="form-control border input" type="text" name="search" placeholder="Search RecipeMaster">
                         <div class="input-group-append">
@@ -83,7 +83,7 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
                                 <li><a class="dropdown-item" aria-label="home page" href="{% url 'home' %}">Home</a></li>
 
-                                <li><a href="{% url 'desserts' %}" aria-label="view all recipes" class="dropdown-item">All Recipes</a></li>
+                                <li><a href="{% url 'recipes' %}" aria-label="view all recipes" class="dropdown-item">All Recipes</a></li>
 
                                 <li><a class="dropdown-item" aria-label="add category" href="">Add Category</a></li>
 
@@ -119,7 +119,7 @@
         {% endif %}
         <!-- Seach bar to control entered search criteria again but full width on smaller screens -->
         <div class="col-12 col-md-8 mx-auto py-1 d-block d-lg-none">
-            <form method="GET" action="{% url 'desserts' %}">
+            <form method="GET" action="{% url 'recipes' %}">
                 <div class="input-group w-100">
                     <input class="form-control border" type="text" name="search" placeholder="Search RecipeMaster">
                     <div class="input-group-append">
