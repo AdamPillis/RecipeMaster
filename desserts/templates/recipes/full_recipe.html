@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+            <div class="image-container my-5">
+                <!-- if product has no image, display general 'none' image in Media -->
+                {% if recipe.image %}
+                    <a aria-label="view recipe in recipe details page" class="text-decoration-none" href="#">
+                        <img class="card-img card-img-fluid" src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
+                    </a>
+                {% else %}
+                    <a aria-label="view recipe with no image in recipe details page" href="#">
+                        <img class="card-img card-img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ recipe.name }}">
+                    </a>
+                {% endif %}
+            </div>
+            
+            
+           
+        </div>
+        <!-- recipe details section containing recipe information -->
+        <div class="col-12 col-md-6 col-lg-4 mx-lg-auto">
+            <div class="product-details-container mb-5 mt-md-5">
+                <h3 class="mt-3 logo-font text-center">{{ recipe.name }}</h3>
+                <!-- if user is superuser, display edit and delete options -->
+                {% if request.user.is_superuser %}
+                    <p class="ml-3">
+                        <a aria-label="update" class="text-info fs-6" href="#"><strong>Update</strong></a> |
+                        <a aria-label="delete" class="text-danger fs-6" href="#"><strong>Delete</strong></a>
+                    </p>
+                {% endif %}
+
+                <p class="mb-0 mt-3 text-left font-weight-bold">Prep time: <strong class="logo-font">{{ recipe.prep_time }}</strong> </p>
+
+                <h3 class="mt-3 fs-5 logo-font text-decoration-underline">Recipe Description</h3>
+                <p class="mt-1">{{ recipe.step_guide }}</p>
+               
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block postloadjs %}
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

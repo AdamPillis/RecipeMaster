@@ -70,3 +70,20 @@ def all_desserts(request):
     }
 
     return render(request, 'recipes/recipes.html', context)
+
+
+def full_recipe(request, pk_id):
+    """
+    Renders product_detail.html to display
+    all info regarding each specific product
+    """
+    recipe = get_object_or_404(Recipe, id=pk_id)
+
+    recipes = Recipe.objects.all()
+
+    context = {
+        'recipe': recipe,
+        'recipes': recipes,
+    }
+
+    return render(request, 'recipes/full_recipe.html', context)

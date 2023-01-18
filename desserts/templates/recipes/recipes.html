@@ -72,8 +72,8 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-0">
                                 {% if recipe.image %}
-                                <a aria-label="view recipe in recipe details page" class="text-decoration-none" href="#">
-                                    <img class="card-img card-img-fluid" src="{{ recipe.image.url }}" alt="{{ product.name }}">
+                                <a aria-label="view recipe in recipe details page" class="text-decoration-none" href="{% url 'full_recipe' recipe.id %}">
+                                    <img class="card-img card-img-fluid" src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
                                 </a>
                                 {% else %}
                                 <a aria-label="view recipe with no image in recipe details page" href="#">
