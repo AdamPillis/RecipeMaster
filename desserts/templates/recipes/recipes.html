@@ -69,8 +69,11 @@
                 <!-- structure and styling of products displaying -->
                 <div class="row my-5">
                     {% for recipe in recipes %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card h-100 border-0">
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 rounded-4">
+                            <div class="card h-100 border-0 rounded-2">
+                                <div class="card-body pb-0">
+                                    <h3 class="mb-3 logo-font text-center">{{ recipe.name }}</h3>                     
+                                </div>
                                 {% if recipe.image %}
                                 <a aria-label="view recipe in recipe details page" class="text-decoration-none" href="{% url 'full_recipe' recipe.id %}">
                                     <img class="card-img card-img-fluid" src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
@@ -80,9 +83,7 @@
                                     <img class="card-img card-img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ recipe.name }}">
                                 </a>
                                 {% endif %}
-                                <div class="card-body pb-0">
-                                    <h3 class="mb-3 logo-font text-center">{{ recipe.name }}</h3>                     
-                                </div>
+                                
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">

@@ -18,11 +18,11 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-            <div class="image-container my-5">
+            <div class="image-container mt-5 mb-2">
                 <!-- if product has no image, display general 'none' image in Media -->
                 {% if recipe.image %}
                     <a aria-label="view recipe in recipe details page" class="text-decoration-none" href="#">
-                        <img class="card-img card-img-fluid" src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
+                        <img class="card-img card-img-fluid rounded-3" src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
                     </a>
                 {% else %}
                     <a aria-label="view recipe with no image in recipe details page" href="#">
@@ -32,10 +32,10 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-6 text-center">
-                    <p class="text-muted">Prep time: {{ recipe.prep_time }} mins</p>
+                    <p class="text-muted fs-6">Prep time: <strong>{{ recipe.prep_time }}</strong> mins</p>
                 </div>
                 <div class="col-12 col-md-6 text-center">
-                    <p class="text-muted">Cooking time: {{ recipe.cooking_time }} mins</p>
+                    <p class="text-muted fs-6">Cooking time: <strong>{{ recipe.cooking_time }}</strong> mins</p>
                 </div>
             </div>
             
@@ -82,6 +82,21 @@
         </div>
     </div>
     <!-- RECIPE STEP GUIDE -->
+    <div class="row mt-2">
+        <div class="col-12 text-center">
+            <h2>Step Guide</h2>
+        </div>
+        <div class="col-8 mx-auto">
+            <p>{{ recipe.step_guide|striptags }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mb-5 my-auto text-center">
+            <a aria-label="home page" href="{% url 'home' %}" class="btn btn1 mt-0 mb-4">
+                Back to Home
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}
 {% block postloadjs %}
