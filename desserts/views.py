@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.contrib import messages
 from django.db.models.functions import Lower
 
-from .models import Recipe, Category
+from .models import Recipe, Category, Ingredient
 
 
 def all_desserts(request):
@@ -81,9 +81,14 @@ def full_recipe(request, pk_id):
 
     recipes = Recipe.objects.all()
 
+    # ingredients = get_object_or_404(Ingredient, recipe=recipe)
+
+    ingredients = Ingredient.objects.all().filter(recipe=recipe)
+
     context = {
         'recipe': recipe,
         'recipes': recipes,
+        'ingredients': ingredients,
     }
 
     return render(request, 'recipes/full_recipe.html', context)
