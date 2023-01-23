@@ -47,16 +47,32 @@
         <div class="col-12 col-md-6 col-lg-4 mx-lg-auto">
             <!-- INGREDIENTS ROW -->
             {% if ingredients %}
-                <div class="row mb-5 mt-md-5">
+                <div class="row" id="quantity-screen">
+                    <div class="col-8 mx-auto">
+                        <form id="quantity-form" method="POST" action="#">
+                            {% csrf_token %}
+                            <div class="quantity">
+                                
+                                <label for="quantity">Please choose quantity</label>
+                                <!-- user enters their player name which is then used in welcome message of #menu-screen -->
+                                <input id="quantity" name="quantity" type="text" required>
+                                <!-- submit button of form element which also opens menu section -->
+                                <input type="submit" value="Let's Go" class="btn btn1" id="start-button" aria-label="Click on the button to confirm player name entered"/>
+                    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row mb-5 mt-md-5" id="ingredient-screen">
                     <div class="col-12 text-center">
                         <h2>Ingredients</h2>
                     </div>
                     {% for ingredient in ingredients %}
-                    <div class="col-6">
+                    <div class="col-5">
                         <p>{{ ingredient.name }}</p>
                     </div>
-                    <div class="col-6">
-                        <p>{{ ingredient.amount }} ({{ ingredient.quantity_type }})</p>
+                    <div class="col-5">
+                        <p class="quantity-amount">{{ ingredient.amount }}</p>
                     </div>
                     {% endfor %}
                 </div>
@@ -67,11 +83,6 @@
                     </div>
                 </div>
             {% endif %}
-
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h2>Ingredients</h2>
-                </div>
 
             <!-- RECIPE ROW -->
             <div class="row mb-5 mt-md-5">

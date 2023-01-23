@@ -164,3 +164,39 @@ header {
 .remove-item {
   cursor: pointer;
 }
+
+/* form box where user enters their player name and the data is posted to be used in other sections */
+.quantity {
+  background: transparent;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px 4px;
+  background-color: hsl(43, 74%, 66%);
+  border-radius: 10px;
+}
+.quantity label {
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin: 5px auto;
+  width: 100%;
+  color: black;
+}
+#quantity {
+  height: 5vh;
+  width: 70%;
+  margin: 10px auto;
+  background: transparent;
+  border-radius: 10px;
+  color: black;
+  font-size: 1.5rem;
+  box-shadow: 0 0 2px 1px;
+  background-color: rgba(39, 69, 84, 0.3); /* original hsl body color converted to rgba for ligher contrast in text box*/
+
+}
+
+
+/* menu-screen section which comes after player name submition */
+#ingredient-screen {
+  display: none;
+}
