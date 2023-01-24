@@ -16,8 +16,7 @@ trigger_search.addEventListener('click', () =>{
         submit_button.classList.remove('input');
     }
 })
-
-
+  
 //Calling the form element to collect player name and use within handleSubmit function
 let form = document.getElementById('quantity-form');
 form.elements.quantity.focus(); // focusing on text box
@@ -53,3 +52,4 @@ function handleSubmit(event) {
      quantityScreen.style.display = 'none';
      ingredientScreen.style.display = 'unset';
 }
+
