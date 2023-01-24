@@ -6,6 +6,12 @@ QUANTITY_TYPE = (
     ("ml", "ml")
     )
 
+DIFFICULTY = (
+    ("EASY", "EASY"),
+    ("MEDIUM", "MEDIUM"),
+    ("HARD", "HARD")
+    )
+
 
 class Category(models.Model):
     """
@@ -39,6 +45,8 @@ class Recipe(models.Model):
         max_digits=6, decimal_places=2, null=True, blank=True)
     cooking_time = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
+    number_of_people = models.IntegerField(null=True, blank=False)
+    difficulty = models.CharField(choices=DIFFICULTY, default=False, max_length=10)
     tools_required = models.TextField()
     step_guide = models.TextField(null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)

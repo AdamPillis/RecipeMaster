@@ -12,8 +12,16 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="mt-3 logo-font">{{ recipe.name }}</h1>
+        </div>
         <div class="col-12">
-            <h1 class="mt-3 logo-font text-center">{{ recipe.name }}</h1>
+            <h2 class="text-muted text-center fs-5">Difficulty: {{ recipe.difficulty }}</h2>
+        </div>
+        <div class="col-12 mt-3 mb text-center">
+            <a aria-label="back to all recipes" href="{% url 'recipes' %}" class="btn btn1 w-10">
+                <i class="fas fa-long-arrow-alt-left me-2"></i> All Recipes
+            </a>
         </div>
     </div>
     <div class="row">
@@ -30,6 +38,7 @@
                     </a>
                 {% endif %}
             </div>
+            <!-- recipe elements under image -->
             <div class="row">
                 <div class="col-12 col-md-6 text-center">
                     <p class="text-muted fs-6">Prep time: <strong>{{ recipe.prep_time }}</strong> mins</p>
@@ -44,7 +53,11 @@
            
         </div>
         <!-- recipe details section containing recipe information -->
-        <div class="col-12 col-md-6 col-lg-4 mx-lg-auto">
+        <div class="col-12 col-md-6 mt-5 col-lg-4 mx-lg-auto my-auto">
+            <div class="mb-4 text-center">
+                <h2>Ingredients</h2>
+                <h2 class="fs-6">(Remember, each portion is for <strong>{{ recipe.number_of_people }}</strong> people)</h2>
+            </div>
             <!-- INGREDIENTS ROW -->
             {% if ingredients %}
                 <div class="row" id="quantity-screen">
@@ -53,33 +66,54 @@
                             {% csrf_token %}
                             <div class="quantity">
                                 
-                                <label for="quantity">Please choose quantity</label>
+                                <label class="text-center fs-6" for="quantity">Number of portions</label>
                                 <!-- user enters their player name which is then used in welcome message of #menu-screen -->
                                 <input id="quantity" name="quantity" type="text" required>
                                 <!-- submit button of form element which also opens menu section -->
-                                <input type="submit" value="Let's Go" class="btn btn1" id="start-button" aria-label="Click on the button to confirm player name entered"/>
+                                <input type="submit" value="Calculate" class="btn btn1 mt-2 mb-3" id="start-button" aria-label="Click on the button to confirm player name entered"/>
                     
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="row mb-5 mt-md-5" id="ingredient-screen">
-                    <div class="col-12 text-center">
-                        <h2>Ingredients</h2>
-                    </div>
                     {% for ingredient in ingredients %}
-                    <div class="col-5">
-                        <p>{{ ingredient.name }}</p>
-                    </div>
-                    <div class="col-5">
-                        <p value="{{ ingredient.amount }}" class="quantity-amount">{{ ingredient.amount }}</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="fs-5">{{ ingredient.name }}</h3>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    <h3 value="{{ ingredient.amount }}" class="fw-bold quantity-amount fs-5">{{ ingredient.amount }}</h3>
+                                </div>
+                                <div class="col-6">
+                                    <h3 class="fs-5">({{ ingredient.quantity_type }})</h3>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                     {% endfor %}
+                    <div class="row">
+                        <div class="col-12 my-4 text-center">
+                            <a aria-label="home page" href="{% url 'home' %}" class="btn btn1">
+                                Add Ingredient
+                            </a>
+                        </div>
+                    </div>
                 </div>
             {% else %}
                 <div class="row mb-5 mt-md-5">
                     <div class="col-12 text-center">
                         <h2><strong>You haven't added any ingredients yet</strong></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 my-4 text-center">
+                        <a aria-label="home page" href="{% url 'home' %}" class="btn btn1">
+                            Add Ingredient
+                        </a>
                     </div>
                 </div>
             {% endif %}
@@ -116,6 +150,7 @@
             <p>{{ recipe.step_guide|striptags }}</p>
         </div>
     </div>
+    <!-- Back to home button -->
     <div class="row">
         <div class="col-12 mb-5 my-auto text-center">
             <a aria-label="home page" href="{% url 'home' %}" class="btn btn1 mt-0 mb-4">

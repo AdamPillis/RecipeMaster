@@ -44,11 +44,7 @@ function handleSubmit(event) {
     let quantity = form.elements.quantity;
     let ingredientScreen = document.getElementById('ingredient-screen');
     let quantityScreen = document.getElementById('quantity-screen');
-    const ingredient_quantity = document.querySelector('.quantity-amount');
     let elements = ingredientScreen.getElementsByClassName('quantity-amount');
-
-    console.log(quantity.value)
-    console.log(elements)
 
         for (let i = 0; i < elements.length; i++) {
             elements[i].innerHTML = Math.floor(elements[i].innerHTML) * quantity.value

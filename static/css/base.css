@@ -172,7 +172,6 @@ header {
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 10px 4px;
-  background-color: hsl(43, 74%, 66%);
   border-radius: 10px;
 }
 .quantity label {
@@ -184,7 +183,7 @@ header {
 }
 #quantity {
   height: 5vh;
-  width: 70%;
+  width: 50%;
   margin: 10px auto;
   background: transparent;
   border-radius: 10px;
