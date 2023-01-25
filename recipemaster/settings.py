@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'desserts',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
