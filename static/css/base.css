@@ -14,10 +14,10 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(188, 108, 37, 1);
 }
 
-p, button, a {
+p, button, a, small {
 font-family: 'Raleway', sans-serif;
 font-size: 1.2rem;
-color: rgba(188, 108, 37, 1);
+color: white;
 }
 
 a {
@@ -38,7 +38,7 @@ header {
 /* design idea from 'Animated CSS Buttons'  */
 .btn{
   position: relative;
-  color: black;
+  color: white;
   font-size: 14px;
   font-family: "montserrat";
   border: 0;
@@ -48,10 +48,11 @@ header {
   text-transform: uppercase;
   overflow: hidden;
   transition: 1s all ease;
+  z-index: 100000;
 }
 .btn::before{
   background: #BC6C25;
-  color: white;
+  color: #fff;
   content: "";
   position: absolute;
   top: 50%;
@@ -62,14 +63,16 @@ header {
 } */
 /* general button hover effect */
 .btn1:hover {
-  color: white;
+  color: #fff;
 }
 .btn1::before{
   width: 0%;
   height: 100%;
+  color: white;
 }
 .btn1:hover::before{
   width: 100%;
+  color: white;
 }
 
 .input {
@@ -114,7 +117,7 @@ header {
 }
 
 .landing-image .container-fluid .text-center {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   position: relative;
   padding: 20px 0;
   top: 50%;
@@ -198,4 +201,23 @@ header {
 /* menu-screen section which comes after player name submition */
 #ingredient-screen {
   display: none;
+}
+
+/* FORM SETTINGs */
+
+.form_border {
+  box-shadow: 5px 10px #888888;
+}
+
+.control-label {
+  display: none;
+}
+
+
+.controls input {
+  border: 2px solid grey;
+  margin: 10px auto;
+  border-radius: 8px;
+  width: 100%;
+  padding: 8px;
 }

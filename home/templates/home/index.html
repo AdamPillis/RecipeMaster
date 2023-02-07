@@ -19,6 +19,11 @@
         <a aria-label="recipes page" href="{% url 'recipes' %}" class="btn btn1">
             All Recipes
         </a>
+        {% if request.user.is_superuser %}
+            <a aria-label="recipes page" href="{% url 'add_category' %}" class="btn btn1">
+                Add Category
+            </a>
+        {% endif %}
     </div>
 </div>
 <div class="row mt-3 mb-5 mx-0">
@@ -74,7 +79,7 @@
                     <h3 class="mb-2 p-1 text-white">Please log in to continue</h3>
                     <h3 class="mb-2 p-1 text-white"><i class="far fa-hand-point-down"></i></h3>
                     
-                    <a aria-label="log in" class="btn btn1 p-3 text-white" href="{% url 'account_login' %}">Log In Now</a>                 
+                    <a aria-label="log in" class="btn btn1 p-3" href="{% url 'account_login' %}">Log In Now</a>                 
                 </div>
             </div>
         </div>
