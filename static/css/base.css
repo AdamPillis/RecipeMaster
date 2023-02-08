@@ -5,13 +5,13 @@ html {
 body {
     padding: 0;
     margin: 0;
-    background-color: rgba(128, 128, 128, 0.1);
+    background-color: rgba(8, 8, 8, 0.7);
   }
 
   /* setting font styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Gideon Roman', cursive;
-  color: rgba(188, 108, 37, 1);
+  color: rgb(237, 114, 7);
 }
 
 p, button, a, small {
@@ -31,13 +31,19 @@ color: rgba(0, 114, 0, 1);
 header {
     position: relative;
     z-index: 50;
-    background: rgba(254, 250, 224, 1);
+    background: rgba(8, 8, 8, 0.7);
     }
+
+.black-background {
+  background: rgba(8, 8, 8, 0.4);
+  border-radius: 6px;
+}
 
     /* setting general button design */
 /* design idea from 'Animated CSS Buttons'  */
 .btn{
   position: relative;
+  min-width: 130px;
   color: white;
   font-size: 14px;
   font-family: "montserrat";
@@ -124,6 +130,10 @@ header {
   border-radius: 8px;
 }
 
+.category-div {
+  box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
 /* footer section in base.html */
 .footer {
     position: relative;
@@ -144,8 +154,8 @@ header {
 /* recipes.html */
 /* image styling for categories */
 .card-img-top {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   /* margin: 5vh auto; */
 }
@@ -153,6 +163,7 @@ header {
 .img-fluid {
   max-width: 130%;
 }
+
 /* setting position of back to the top button in products.html */
 .btt-button {
   height: 50px;
@@ -213,11 +224,15 @@ header {
   display: none;
 }
 
+.checkbox {
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
 
 .controls input {
   border: 2px solid grey;
   margin: 10px auto;
   border-radius: 8px;
-  width: 100%;
+  width: 75%;
   padding: 8px;
 }

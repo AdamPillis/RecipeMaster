@@ -74,3 +74,28 @@ def update_category(request, pk_id):
     }
 
     return render(request, template, context)
+
+
+def delete_category(request, pk_id):
+    """Delete Category"""
+    # only superuser can access this function
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'Sorry but you do not have access to this task.')
+        return redirect(reverse('home'))
+
+    # get category id
+    category = get_object_or_404(Category, id=pk_id)
+
+    if request.method == 'POST':
+        category.delete()
+        messages.success(request, 'Category successfully deleted!')
+        return redirect('home')
+
+    template = 'home/delete_category.html'
+
+    context = {
+        'category': category,
+    }
+
+    return render(request, template, context)

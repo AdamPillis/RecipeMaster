@@ -14,6 +14,7 @@ class CategoryForm(forms.ModelForm):
         """
         model = Category
         fields = '__all__'
+        exclude = ('image_url',)
         # image field is linked with custom styled widget
         image = forms.ImageField(
         label='Image', required=False, widget=CustomClearableFileInput)
