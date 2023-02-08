@@ -2,6 +2,13 @@ html {
     
   }
 
+.main-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  padding: 0;
+  margin: auto;
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -142,6 +149,11 @@ header {
 
 /* recipes.html */
 
+.recipe-image {
+  width: 250px;
+  height: 250px;
+}
+
 .card-img {
   width: 100%;
   margin: 0 auto;
@@ -164,7 +176,7 @@ header {
   max-width: 130%;
 }
 
-/* setting position of back to the top button in products.html */
+/* setting position of back to the top button in */
 .btt-button {
   height: 50px;
   width: 50px;
