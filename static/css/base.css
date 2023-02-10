@@ -46,6 +46,11 @@ header {
   border-radius: 6px;
 }
 
+.login-logo {
+  font-size: 3.5rem;
+  margin: 20px auto;
+  top: 0 !important;
+}
     /* setting general button design */
 /* design idea from 'Animated CSS Buttons'  */
 .btn{
@@ -133,8 +138,8 @@ header {
   background-color: rgba(0, 0, 0, 0.8);
   position: relative;
   padding: 20px 0;
-  top: 50%;
   border-radius: 8px;
+  top: 60%;
 }
 
 .category-div {
@@ -247,4 +252,6 @@ header {
   border-radius: 8px;
   width: 75%;
   padding: 8px;
+  background-color: transparent;
+  color: white;
 }
