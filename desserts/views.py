@@ -120,3 +120,34 @@ def add_recipe(request):
     }
 
     return render(request, template, context)
+
+
+def update_recipe(request, pk_id):
+    """Update Recipe"""
+    # only superuser can access this function
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'Sorry but you do not have access to this task.')
+        return redirect(reverse('home'))
+
+    recipe = get_object_or_404(Recipe, id=pk_id)
+
+    if request.method == 'POST':
+        recipe_form = RecipeForm(request.POST, request.FILES, instance=recipe)
+        if recipe_form.is_valid():
+            recipe_form = recipe_form.save()
+            messages.success(request, 'Successfully updated recipe!')
+            return redirect(reverse('recipes'))
+        else:
+            messages.error(request, 'Failed to update recipe. Please try again.')
+    else:
+        recipe_form = RecipeForm(instance=recipe)
+        messages.info(request, f'You are editing {recipe.name}')
+
+    template = 'recipes/update_recipe.html'
+    context = {
+        'recipe_form': recipe_form,
+        'recipe': recipe,
+    }
+
+    return render(request, template, context)

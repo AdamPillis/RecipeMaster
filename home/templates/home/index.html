@@ -15,12 +15,12 @@
     <div class="col-12 text-center">
         <h1>Categories</h1>
     </div>
-    <div class="col-12 mt-3 my-auto text-center">
-        <a aria-label="recipes page" href="{% url 'recipes' %}" class="btn btn1">
+    <div class="col-12 my-auto text-center">
+        <a aria-label="recipes page" href="{% url 'recipes' %}" class="btn btn1 mx-3 my-3">
             All Recipes
         </a>
         {% if request.user.is_superuser %}
-            <a aria-label="recipes page" href="{% url 'add_category' %}" class="btn btn1">
+            <a aria-label="recipes page" href="{% url 'add_category' %}" class="btn btn1 mx-3 my-3">
                 Add Category
             </a>
         {% endif %}

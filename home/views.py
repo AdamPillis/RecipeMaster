@@ -59,7 +59,7 @@ def update_category(request, pk_id):
         category_form = CategoryForm(request.POST, request.FILES, instance=category)
         if category_form.is_valid():
             category_form = category_form.save()
-            messages.success(request, 'Successfully updated product!')
+            messages.success(request, 'Successfully updated category!')
             return redirect(reverse('home'))
         else:
             messages.error(request, 'Failed to update category. Please try again.')

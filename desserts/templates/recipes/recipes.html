@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center mt-4">
-                <h2 class="fs-1 logo-font">Recipes</h2>
+                <h1 class="logo-font">Recipes</h1>
                 <hr class="w-50 my-4 mx-auto">
                 <!-- displaying category type as a clickable button to filter category type -->
                 {% for c in chosen_categories %}
@@ -27,7 +27,7 @@
         <!-- sorting feature sections -->
         <!-- sorting urls set up in option tags -->
         <div class="row">
-            <div class="col-10 offset-1">
+            <div class="col-12 col-md-10 offset-md-1">
                 <div class="row mt-1 mb-2">
                         <div class="col-12 col-md-6 my-auto mt-3 order-md-last d-flex justify-content-center justify-content-md-end">
                             <div class="sort-select-wrapper w-75">
@@ -52,7 +52,7 @@
                             <p class="text-black mt-3 text-center text-md-left">                                                    
                                 <!-- django length template filter used to count all found landing page -->
                                 <!-- displays for filtered and if statement if searched -->
-                                Showing <strong class="logo-font">{{ recipes|length }}</strong> recipes{% if search_word %} found for <strong>"{{ search_word }}"</strong>{% else %} for your search{% endif %}
+                                Showing <strong class="logo-font orange-theme">{{ recipes|length }}</strong> recipes{% if search_word %} found for <strong>"{{ search_word }}"</strong>{% else %} for your search{% endif %}
                             </p>
                         </div>
                         
@@ -111,6 +111,14 @@
                                                     Cooking time: <strong>{{ recipe.cooking_time }}</strong> minutes
                                                 </small>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 text-center mb-2">
+                                            <a aria-label="update" class="text-info fs-6" href="{% url 'update_recipe' recipe.id %}"><strong><i class="fas fa-wrench"></i></strong></a>
+                                        </div>
+                                        <div class="col-6 text-center mb-2">
+                                            <a aria-label="delete" class="text-danger fs-6" href="#"><strong><i class="fas fa-trash-alt"></i></strong></a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center my-3">
+                <h1 class="logo-font mt-3">Update Recipe</h1>
+                <hr class="w-50 my-4 mx-auto">
+                <!-- Welcoming user using their username -->
+            </div>
+        </div>
+        <!-- Add_product form rendered as crispy -->
+        <div class="row">
+            <div class="col-12 col-md-6 mb-4 p-3 mx-auto shadow black-background">
+                <div class="mx-auto text-center">
+
+                
+                    <!-- form enctype attr to upload image -->
+                    <form method="POST" action="{% url 'update_recipe' recipe.id %}" id="recipe-form" class="form mb-2" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- To hide image label and load everything else as crispy form -->
+                        {% for field in recipe_form %}
+                            {% if field.name != 'image' %}
+                                {{ field | as_crispy_field }}
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                        {% endfor %}
+                        <!-- submit button and cancel button for product_form -->
+                        <div class="text-center my-3">
+                            <a aria-label="cancel" class="btn btn1 me-2" href="{% url 'recipes' %}">Cancel</a>
+                            <button aria-label="update recipe" class="btn btn1" type="submit">Update Recipe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!-- To handle notifying the user of what the image uploaded is going to be -->
+{% block postloadjs %}
+    {{ block.super }}
+    <script>
+        $('.new-image').change(function() {
+            var file = $('.new-image')[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`);
+        });
+    </script>
+{% endblock %}
