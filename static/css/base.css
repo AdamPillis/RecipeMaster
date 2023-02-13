@@ -12,13 +12,13 @@ html {
 body {
     padding: 0;
     margin: 0;
-    background-color: rgba(8, 8, 8, 0.7);
+    background-color: rgba(8, 8, 8, 0.6);
   }
 
   /* setting font styles */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, i {
   font-family: 'Gideon Roman', cursive;
-  color: rgb(237, 114, 7);
+  color: rgb(255, 95, 0);
 }
 
 p, button, a, small {
@@ -155,8 +155,11 @@ header {
 /* recipes.html */
 
 .recipe-image {
-  width: 250px;
-  height: 250px;
+  width: 90%;
+  height: 270px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 8px 10px rgba(0, 0, 0, 0.5);
+  
 }
 
 .card-img {
@@ -248,10 +251,27 @@ header {
 
 .controls input {
   border: 2px solid grey;
-  margin: 10px auto;
+  margin: 15px auto;
   border-radius: 8px;
   width: 75%;
   padding: 8px;
   background-color: transparent;
   color: white;
+}
+
+.controls textarea {
+  width: 80%;
+  background-color: transparent;
+  border-radius: 5px;
+  color: white;
+  margin: 15px auto;
+}
+
+.controls select {
+  width: 40%;
+  background-color: rgba(8, 8, 8, 0.7);
+  border-radius: 5px;
+  color: white;
+  margin: 15px auto;
+  padding: 5px;
 }
