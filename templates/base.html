@@ -44,7 +44,7 @@
         <div class="row d-block d-lg-none">
                 <div class="col-12 text-center">
                     <a href="{% url 'home' %}" aria-label="Reload home page">
-                        <h2 class="main-logo text-center">Zoltán's Recipes</h2>
+                        <h2 class="main-logo pt-3 text-center">Zoltán's Recipes</h2>
                     </a>
                 </div>
             
@@ -124,9 +124,9 @@
         <div class="col-12 col-md-8 mx-auto py-1 d-block d-lg-none">
             <form method="GET" action="{% url 'recipes' %}">
                 <div class="input-group w-100">
-                    <input class="form-control border" type="text" name="search" placeholder="Search RecipeMaster">
-                    <div class="input-group-append">
-                        <button class="form-control btn btn1" type="submit">
+                    <input class="form-control w-75 border" type="text" name="search" placeholder="Search RecipeMaster">
+                    <div class="input-group-append mx-auto my-3">
+                        <button class="form-control btn btn1 border-0" type="submit">
                             <span class="icon">
                                 <i class="fas fa-search"></i>
                             </span>
