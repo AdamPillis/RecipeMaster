@@ -49,10 +49,10 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 order-md-first">
-                            <p class="text-black mt-3 text-center text-md-left">                                                    
+                            <p class="text-white mt-3 text-center text-md-left">                                                    
                                 <!-- django length template filter used to count all found landing page -->
                                 <!-- displays for filtered and if statement if searched -->
-                                Showing <strong class="logo-font orange-theme">{{ recipes|length }}</strong> recipes{% if search_word %} found for <strong>"{{ search_word }}"</strong>{% else %} for your search{% endif %}
+                                Showing (<strong class="logo-font orange-theme"> {{ recipes|length }} </strong>) recipes{% if search_word %} found for <strong>"{{ search_word }}"</strong>{% else %} for your search{% endif %}
                             </p>
                         </div>
                         
@@ -60,12 +60,12 @@
                 </div>
                 <!-- Back to Home button at the top for user to return to landing page -->
                 <div class="row">
-                    <div class="col-12 my-auto text-center mt-2">
-                        <a aria-label="home page" href="{% url 'home' %}" class="btn btn1 mt-0 mb-4">
+                    <div class="col-12 my-auto text-center my-3 mx-3">
+                        <a aria-label="home page" href="{% url 'home' %}" class="btn btn1 my-3 mx-3">
                             Back to Home
                         </a>
                         {% if request.user.is_superuser %}
-                            <a aria-label="Add Recipe" href="{% url 'add_recipe' %}" class="btn btn1 mt-0 mb-4">
+                            <a aria-label="Add Recipe" href="{% url 'add_recipe' %}" class="btn btn1 my-3 mx-3">
                                 Add Recipe
                             </a>
                         {% endif %}
@@ -118,7 +118,7 @@
                                             <a aria-label="update" class="text-info fs-6" href="{% url 'update_recipe' recipe.id %}"><strong><i class="fas fa-wrench"></i></strong></a>
                                         </div>
                                         <div class="col-6 text-center mb-2">
-                                            <a aria-label="delete" class="text-danger fs-6" href="#"><strong><i class="fas fa-trash-alt"></i></strong></a>
+                                            <a aria-label="delete" class="text-danger fs-6" href="{% url 'delete_recipe' recipe.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
                                         </div>
                                     </div>
                                 </div>

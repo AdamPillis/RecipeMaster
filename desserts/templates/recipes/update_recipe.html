@@ -28,6 +28,15 @@
                     <form method="POST" action="{% url 'update_recipe' recipe.id %}" id="recipe-form" class="form mb-2" enctype="multipart/form-data">
                         {% csrf_token %}
                         <!-- To hide image label and load everything else as crispy form -->
+                        {% if recipe_form.errors %}
+                            {% for field in recipe_form %}
+                                {% for error in field.errors %} 
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
                         {% for field in recipe_form %}
                             {% if field.name != 'image' %}
                                 {{ field | as_crispy_field }}
@@ -35,6 +44,7 @@
                                 {{ field }}
                             {% endif %}
                         {% endfor %}
+                        
                         <!-- submit button and cancel button for product_form -->
                         <div class="text-center my-3">
                             <a aria-label="cancel" class="btn btn1 me-2" href="{% url 'recipes' %}">Cancel</a>
