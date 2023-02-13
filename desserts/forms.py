@@ -1,24 +1,24 @@
 from django import forms
-from .widgets import CustomClearableFileInput
-from desserts.models import Category
+from home.widgets import CustomClearableFileInput
+from desserts.models import Recipe
 
 
-class CategoryForm(forms.ModelForm):
+class RecipeForm(forms.ModelForm):
     """
-    Add category form
+    Add recipe form
     """
     class Meta:
         """
-        class refering to Category model and fields
+        class refering to Recipe model and fields
         to include in form
         """
-        model = Category
+        model = Recipe
         fields = '__all__'
         exclude = ('image_url',)
         # image field is linked with custom styled widget
         image = forms.ImageField(
             label='Image', required=False, widget=CustomClearableFileInput)
-    
+
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
@@ -26,9 +26,15 @@ class CategoryForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'name': 'Category Name',
-            'image_url': 'Category Image',
-            'image': 'Category Image',
+            'category': 'Category',
+            'name': 'Recipe Title',
+            'prep_time': 'Preparation Time',
+            'cooking_time': 'Cooking Time',
+            'number_of_people': 'Number of portions',
+            'difficulty': 'Difficulty',
+            'tools_required': 'Tools Required',
+            'step_guide': 'Step Guide',
+            'image': 'Image',
         }
 
         self.fields['name'].widget.attrs['autofocus'] = True
@@ -41,4 +47,3 @@ class CategoryForm(forms.ModelForm):
         self.fields[field].widget.attrs['class'] = 'border-black'
         self.fields[field].label = False
 
-        

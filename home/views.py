@@ -30,7 +30,7 @@ def add_category(request):
         category_form = CategoryForm(request.POST, request.FILES)
         if category_form.is_valid():
             category_form = category_form.save()
-            messages.success(request, 'Successfully added product!')
+            messages.success(request, 'Successfully added category!')
             return redirect(reverse('home'))
         else:
             messages.error(request, 'Failed to add category. Please try again.')

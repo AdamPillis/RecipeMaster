@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.db.models.functions import Lower
 
 from .models import Recipe, Category, Ingredient
+from .forms import RecipeForm
 
 
 def all_desserts(request):
@@ -92,3 +93,30 @@ def full_recipe(request, pk_id):
     }
 
     return render(request, 'recipes/full_recipe.html', context)
+
+
+def add_recipe(request):
+    """Add Recipe"""
+    # only superuser can access this function
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'Sorry but you do not have access to this task.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        recipe_form = RecipeForm(request.POST, request.FILES)
+        if recipe_form.is_valid():
+            recipe_form = recipe_form.save()
+            messages.success(request, 'Successfully added recipe!')
+            return redirect(reverse('recipes'))
+        else:
+            messages.error(request, 'Failed to add recipe. Please try again.')
+    else:
+        recipe_form = RecipeForm()
+
+    template = 'recipes/add_recipe.html'
+    context = {
+        'recipe_form': recipe_form,
+    }
+
+    return render(request, template, context)
