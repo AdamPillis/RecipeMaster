@@ -112,7 +112,6 @@
                     </div>
                 </div>
                 <div class="row">
-                      </div>
                     <div class="col-12 my-4 text-center">
                         <a aria-label="home page" href="{% url 'home' %}" class="btn btn1">
                             Add Ingredient
@@ -135,10 +134,10 @@
             {% if request.user.is_superuser %}
             <div class="row">
                 <div class="col-6 text-center">
-                    <a aria-label="update" class="text-info fs-3" href="#"><strong><i class="fas fa-wrench"></i></strong></a>
+                    <a aria-label="update" class="text-info fs-3" href="{% url 'update_recipe' recipe.id  %}"><strong><i class="fas fa-wrench"></i></strong></a>
                 </div>
                 <div class="col-6 text-center">
-                    <a aria-label="delete" class="text-danger fs-3" href="#"><strong><i class="fas fa-trash-alt"></i></strong></a>
+                    <a aria-label="delete" class="text-danger fs-3" href="{% url 'delete_recipe' recipe.id  %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
                 </div>
             </div>
             {% endif %}

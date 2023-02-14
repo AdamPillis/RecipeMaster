@@ -28,23 +28,13 @@
         <!-- sorting urls set up in option tags -->
         <div class="row">
             <div class="col-12 col-md-10 offset-md-1">
-                <div class="row mt-1 mb-2">
+                <div class="row my-3">
                         <div class="col-12 col-md-6 my-auto mt-3 order-md-last d-flex justify-content-center justify-content-md-end">
                             <div class="sort-select-wrapper w-75">
-                                <select id="sort-selector" class="custom-select w-100 custom-select-sm btn{% if chosen_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                <select id="sort-selector" class="custom-select w-100 p-1 black-background text-white shadow custom-select-sm btn{% if chosen_sorting != 'None_None' %}info{% else %}black{% endif %}">
                                     <option value="reset" {% if chosen_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                                    <option value="price_asc" {% if chosen_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-                                    <option value="price_desc" {% if chosen_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                                    <option value="rating_asc" {% if chosen_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
-                                    <option value="rating_desc" {% if chosen_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
                                     <option value="name_asc" {% if chosen_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
                                     <option value="name_desc" {% if chosen_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                                    <option value="category_asc" {% if chosen_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
-                                    <option value="category_desc" {% if chosen_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
-                                    <option value="brand_asc" {% if chosen_sorting == 'brand_asc' %}selected{% endif %}>Brand (A-Z)</option>
-                                    <option value="brand_desc" {% if chosen_sorting == 'brand_desc' %}selected{% endif %}>Brand (Z-A)</option>
-                                    <option value="type_asc" {% if chosen_sorting == 'type_asc' %}selected{% endif %}>Type (New-Used)</option>
-                                    <option value="type_desc" {% if chosen_sorting == 'type_desc' %}selected{% endif %}>Type (Used-New)</option>
                                 </select>
                             </div>
                         </div>
@@ -60,7 +50,7 @@
                 </div>
                 <!-- Back to Home button at the top for user to return to landing page -->
                 <div class="row">
-                    <div class="col-12 my-auto text-center my-3 mx-3">
+                    <div class="col-12 my-auto text-center">
                         <a aria-label="home page" href="{% url 'home' %}" class="btn btn1 my-3 mx-3">
                             Back to Home
                         </a>
@@ -170,6 +160,33 @@
     <script>
         $('.top-btt').click(function(e) {
             window.scrollTo(0,0);
+        });
+    </script>
+    <!-- using javascriptcurrent URL's sorting values
+    are taken and replaced with value equal to clicked sorting
+    method. -->
+    <script>
+        $('#sort-selector').change(function(){
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+            // selecting all option values
+            var selectedVal = selector.val();
+            // As long as option value is not reset, take first value as sort and second as direction
+            if (selectedVal != "reset") {
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+                // change current Url's sort and direction values with variables values above
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                // if reset, just delete sort and direction value
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
         });
     </script>
     <script src="{% static 'js/script.js' %}"></script>

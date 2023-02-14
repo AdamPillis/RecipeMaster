@@ -63,8 +63,8 @@
                 </button>           
                 <form method="GET" action="{% url 'recipes' %}">
                     <div class="input-group w-100">
-                        <input class="form-control border input" type="text" name="search" placeholder="Search RecipeMaster">
-                        <div class="input-group-append">
+                        <input class="form-control border border-end-0 input body-background" type="text" name="search" placeholder="Search RecipeMaster">
+                        <div class="input-group-append body-background border border-start-0">
                             <button class="form-control submit_button input btn btn1 search_button" type="submit">
                                 <span class="icon">
                                     <i class="fas fa-search"></i>
@@ -80,21 +80,21 @@
                         {% if request.user.is_authenticated %}
                         <li class="list-inline-item dropdown me-5">
                             <a class="text-decoration-none" aria-label="dropwdown for my account" role="button" href="#" id="dropdownAccountMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div><i class="fas fa-chevron-circle-down fs-4"></i></div>
+                                <div><i class="fas fa-bars fs-4"></i></div>
                                 
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownAccountMenu">
-                                <li><a class="dropdown-item" aria-label="home page" href="{% url 'home' %}">Home</a></li>
+                                <li><a class="dropdown-item orange-theme fw-bold" aria-label="home page" href="{% url 'home' %}">Home</a></li>
 
-                                <li><a href="{% url 'recipes' %}" aria-label="view all recipes" class="dropdown-item">All Recipes</a></li>
+                                <li><a href="{% url 'recipes' %}" aria-label="view all recipes" class="dropdown-item orange-theme fw-bold">All Recipes</a></li>
 
-                                <li><a href="{% url 'add_category' %}" class="dropdown-item" aria-label="add category" href="">Add Category</a></li>
+                                <li><a href="{% url 'add_category' %}" class="dropdown-item orange-theme fw-bold" aria-label="add category" href="">Add Category</a></li>
 
-                                <li><a href="" aria-label="add recipe" class="dropdown-item">Add Recipe</a></li>
+                                <li><a href="" aria-label="add recipe" class="dropdown-item orange-theme fw-bold">Add Recipe</a></li>
 
-                                <li><a href="{% url 'admin:index' %}" aria-label="admin panel" class="dropdown-item">Admin Panel</a></li>
+                                <li><a href="{% url 'admin:index' %}" aria-label="admin panel" class="dropdown-item orange-theme fw-bold">Admin Panel</a></li>
                                 
-                                <li><a class="dropdown-item" aria-label="log out" href="{% url 'account_logout' %}">Log Out</a></li>
+                                <li><a class="dropdown-item orange-theme fw-bold" aria-label="log out" href="{% url 'account_logout' %}">Log Out</a></li>
                             </ul>
                         </li>
 
@@ -124,8 +124,8 @@
         <div class="col-12 col-md-8 mx-auto py-1 d-block d-lg-none">
             <form method="GET" action="{% url 'recipes' %}">
                 <div class="input-group w-100">
-                    <input class="form-control w-75 border" type="text" name="search" placeholder="Search RecipeMaster">
-                    <div class="input-group-append mx-auto my-3">
+                    <input class="form-control w-75 p-3 border body-background" type="text" name="search" placeholder="Search RecipeMaster">
+                    <div class="input-group-append mx-auto my-3 bg-transparent w-100">
                         <button class="form-control btn btn1 border-0" type="submit">
                             <span class="icon">
                                 <i class="fas fa-search"></i>

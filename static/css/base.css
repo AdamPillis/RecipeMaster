@@ -19,6 +19,7 @@ body {
 h1, h2, h3, h4, h5, h6{
   font-family: 'Gideon Roman', cursive;
   color: rgba(255, 119, 0, 1);
+  font-weight: 500;
 }
 
 button, a, small {
@@ -32,17 +33,22 @@ color: rgb(255, 119, 0);
 text-decoration: none;
 }
 a:hover {
-color: rgba(0, 114, 0, 1);
+color: white;
 }
 
 header {
     position: relative;
     z-index: 50;
-    background: rgba(8, 8, 8, 0.7);
+    background: rgba(8, 8, 8, 0.8);
     }
 
 .black-background {
   background: rgba(8, 8, 8, 0.4);
+  border-radius: 6px;
+}
+
+.body-background {
+  background: rgba(8, 8, 8, 0.1);
   border-radius: 6px;
 }
 
