@@ -14,6 +14,7 @@ class RecipeForm(forms.ModelForm):
         """
         model = Recipe
         fields = '__all__'
+        summernote_fields = ('tools_required', 'step_guide')
         exclude = ('image_url',)
         # image field is linked with custom styled widget
         image = forms.ImageField(

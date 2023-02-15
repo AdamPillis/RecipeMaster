@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Category, Recipe, Ingredient
+from .models import Category, Recipe, Ingredient, Linked_recipes
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -39,6 +39,16 @@ class RecipeAdmin(SummernoteModelAdmin):
     summernote_fields = ('tools_required', 'step_guide')
 
 
+class Linked_recipesAdmin(admin.ModelAdmin):
+    """To customise ingredient view via admin panel"""
+    list_display = (
+        'recipe',
+        'linked_recipe',
+    )
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Ingredient, IngredientAdmin)
 admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Linked_recipes, Linked_recipesAdmin)
+

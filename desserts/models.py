@@ -69,3 +69,11 @@ class Ingredient(models.Model):
     def __str__(self):
         """returns ingredient name as string"""
         return self.ingredient_name
+
+
+class Linked_recipes(models.Model):
+    """
+    x
+    """
+    recipe = models.ForeignKey(Recipe, null=True, blank=False, on_delete=models.CASCADE, related_name='recipe')
+    linked_recipe = models.ForeignKey(Recipe, null=True, blank=False, on_delete=models.CASCADE, related_name='linked')

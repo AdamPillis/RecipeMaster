@@ -54,7 +54,7 @@
            
         </div>
         <!-- recipe details section containing recipe information -->
-        <div class="col-12 col-md-6 mt-5 col-lg-4 mx-lg-auto my-auto">
+        <div class="col-12 col-md-6 mt-5 col-lg-4 mx-lg-auto my-auto shadow p-2">
             <div class="mb-4 text-center">
                 <h2>Ingredients</h2>
                 <div class="text-center my-4">
@@ -144,14 +144,33 @@
         </div>
     </div>
     <!-- RECIPE STEP GUIDE -->
-    <div class="row mt-2">
-        <div class="col-12 text-center">
+    <div class="row mt-4">
+        <div class="col-12 col-md-5 mx-auto text-center shadow p-2">
             <h2>Step Guide</h2>
-        </div>
-        <div class="col-8 mx-auto">
             <p>{{ recipe.step_guide|striptags }}</p>
         </div>
+        <div class="col-12 col-md-5 mx-lg-auto my-auto shadow p-2">
+            <h2 class="my-3 text-center">Other Recipes</h2>
+            {% for link in links %}
+                <div class="row mb-4">
+                    <div class="col-4">
+                        <a aria-label="{{ link.linked_recipe.name }}" href="{% url 'full_recipe' link.linked_recipe.id %}">
+                            {% if link.linked_recipe.image %}
+                                <img class="basket-img rounded" src="{{ link.linked_recipe.image.url }}" alt="{{ link.linked_recipe.name }}">
+                            {% else %}
+                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ link.linked_recipe.name }}">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="col-8 text-center">
+                        <h4>{{ link.linked_recipe.name }}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
     </div>
+   
     <!-- Back to home button -->
     <div class="row">
         <div class="col-12 mb-5 my-auto text-center">
