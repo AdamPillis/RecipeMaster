@@ -54,3 +54,29 @@ function handleSubmit(event) {
 }
 
 
+function displayIngredients() {
+    let ingredientScreen = document.getElementById('ingredient-screen');
+    let showButton = document.getElementById('ingredient-display');
+    let hideButton = document.getElementById('hide-display');
+    
+
+    ingredientScreen.style.display = 'unset';
+    showButton.style.display = 'none';
+    hideButton.style.display = 'unset';
+
+    return ingredientScreen;
+
+}
+
+
+function hideIngredients() {
+    let ingredientScreen = document.getElementById('ingredient-screen');
+    let showButton = document.getElementById('ingredient-display');
+    let hideButton = document.getElementById('hide-display');
+    
+
+    ingredientScreen.style.display = 'none';
+    showButton.style.display = 'unset';
+    hideButton.style.display = 'none';
+}
+

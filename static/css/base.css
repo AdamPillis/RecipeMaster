@@ -124,6 +124,10 @@ header {
   color:rgba(255, 119, 0, 1);
 }
 
+#hide-display {
+  display: none;
+}
+
 /* index.html */
 .landing-image {
   height: 100vh;

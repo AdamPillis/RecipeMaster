@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.contrib import messages
 from django.db.models.functions import Lower
@@ -141,12 +142,12 @@ def update_recipe(request, pk_id):
             child = ingredient_form.save(commit=False)
             if not child.ingredient_name:
                 messages.success(request, 'Successfully updated recipe!')
-                return redirect('recipes')
+                return redirect(reverse('full_recipe', args=[recipe.id]))
             else:
                 child.recipe = parent
                 child.save()
                 messages.success(request, 'Successfully updated recipe!')
-                return redirect(reverse('recipes '))
+                return redirect(reverse('full_recipe', args=[recipe.id]))
         else:
             messages.error(request, 'Failed to update recipe. Please try again.')
     else:

@@ -58,14 +58,43 @@
             <div class="mb-4 text-center">
                 <h2>Ingredients</h2>
                 <div class="text-center my-4">
-                    <a aria-label="home page" href="{% url 'update_recipe' recipe.id %}" class="btn btn1">
+                    <a aria-label="home page" href="{% url 'update_recipe' recipe.id %}" class="btn btn1 m-3">
                         Add Ingredient
                     </a>
+                    <button aria-label="show ingredients" onClick="displayIngredients()" id="ingredient-display" class="btn btn1 m-3">
+                        Show Ingredients
+                    </button>
+                    <button aria-label="hide ingredients" onClick="hideIngredients()" id="hide-display" class="btn btn1 m-3">
+                        <i class="fas fa-eye-slash"></i>
+                    </button>
                 </div>
                 <h2 class="fs-6 my-3 text-white">(Remember, each portion is for " <strong class="orange-theme">{{ recipe.number_of_people }}</strong> " people)</h2>
             </div>
             <!-- INGREDIENTS ROW -->
             {% if ingredients %}
+                <div class="row mb-5 mt-md-5" id="ingredient-screen">
+                        
+                    {% for ingredient in ingredients %}
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="fs-5">{{ ingredient.ingredient_name }}</h3>
+                            
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6 text-center">
+                                    <h3 value="{{ ingredient.amount }}" class="fw-bold quantity-amount fs-5">{{ ingredient.amount }}</h3>
+                                </div>
+                                <div class="col-6">
+                                    <h3 class="fs-5">({{ ingredient.quantity_type }})</h3>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
                 <div class="row" id="quantity-screen">
                     <div class="col-8 mx-auto">
                         <form id="quantity-form" method="POST" action="#">
@@ -82,35 +111,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="row mb-5 mt-md-5" id="ingredient-screen">
-                    
-                    {% for ingredient in ingredients %}
-                    <div class="row">
-                        <div class="col-6">
-                            <h3 class="fs-5">{{ ingredient.ingredient_name }}</h3>
-                             
-                        </div>
-                        <div class="col-6">
-                            <div class="row">
-                                <div class="col-6 text-center">
-                                    <h3 value="{{ ingredient.amount }}" class="fw-bold quantity-amount fs-5">{{ ingredient.amount }}</h3>
-                                </div>
-                                <div class="col-6">
-                                    <h3 class="fs-5">({{ ingredient.quantity_type }})</h3>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <div class="row">
-                        <div class="col-12 my-4 text-center">
-                            <a aria-label="home page" href="{% url 'update_recipe' recipe.id %}" class="btn btn1">
-                                Add Ingredient
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                
             {% else %}
                 <div class="row mb-5 mt-md-5">
                     <div class="col-12 text-center">
