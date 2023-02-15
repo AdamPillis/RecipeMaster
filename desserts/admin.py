@@ -17,7 +17,7 @@ class IngredientAdmin(admin.ModelAdmin):
     """To customise ingredient view via admin panel"""
     list_display = (
         'recipe',
-        'name',
+        'ingredient_name',
         'amount',
         'quantity_type',
     )

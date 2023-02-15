@@ -20,7 +20,20 @@
         </div>
         <!-- Add_product form rendered as crispy -->
         <div class="row">
-            <div class="col-12 col-md-6 mb-4 p-3 mx-auto shadow black-background">
+            <div class="col-12 col-md-5 mx-auto">
+                <h2 class="text-center">{{ recipe.name }}</h2>
+                <div class="image-container mt-5 mb-2">
+                    <!-- if product has no image, display general 'none' image in Media -->
+                    {% if recipe.image %}
+                        <img class="card-img card-img-fluid rounded-3" src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
+                    {% else %}
+                        <a aria-label="view recipe with no image in recipe details page" href="#">
+                            <img class="card-img card-img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ recipe.name }}">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-md-5 mb-4 p-3 mx-auto shadow black-background">
                 <div class="mx-auto text-center">
 
                 
@@ -37,6 +50,7 @@
                                 {% endfor %}
                             {% endfor %}
                         {% endif %}
+                        <h3 id="ingredients" class="my-3">Recipe</h3>
                         {% for field in recipe_form %}
                             {% if field.name != 'image' %}
                                 {{ field | as_crispy_field }}
@@ -44,6 +58,17 @@
                                 {{ field }}
                             {% endif %}
                         {% endfor %}
+
+                        {% if ingredient_form %}
+                        <h3 id="ingredients" class="my-3">Ingredients</h3>
+                            {% for field in ingredient_form %}
+                                {% if field.name != 'image' %}
+                                    {{ field | as_crispy_field }}
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                         
                         <!-- submit button and cancel button for product_form -->
                         <div class="text-center my-3">

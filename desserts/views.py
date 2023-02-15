@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.db.models.functions import Lower
 
 from .models import Recipe, Category, Ingredient
-from .forms import RecipeForm
+from .forms import RecipeForm, IngredientForm
 
 
 def all_desserts(request):
@@ -134,19 +134,26 @@ def update_recipe(request, pk_id):
 
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, request.FILES, instance=recipe)
-        if recipe_form.is_valid():
-            recipe_form = recipe_form.save()
+        ingredient_form = IngredientForm(request.POST, request.FILES)
+        if all([recipe_form.is_valid(), ingredient_form.is_valid]):
+            parent = recipe_form.save(commit=False)
+            parent.save()
+            child = ingredient_form.save(commit=False)
+            child.recipe = parent
+            child.save()
             messages.success(request, 'Successfully updated recipe!')
             return redirect(reverse('recipes'))
         else:
             messages.error(request, 'Failed to update recipe. Please try again.')
     else:
         recipe_form = RecipeForm(instance=recipe)
+        ingredient_form = IngredientForm()
         messages.info(request, f'You are editing {recipe.name}')
 
     template = 'recipes/update_recipe.html'
     context = {
         'recipe_form': recipe_form,
+        'ingredient_form': ingredient_form,
         'recipe': recipe,
     }
 
@@ -176,3 +183,4 @@ def delete_recipe(request, pk_id):
     }
 
     return render(request, template, context)
+

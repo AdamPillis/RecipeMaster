@@ -1,6 +1,6 @@
 from django import forms
 from home.widgets import CustomClearableFileInput
-from desserts.models import Recipe
+from desserts.models import Recipe, Ingredient
 
 
 class RecipeForm(forms.ModelForm):
@@ -38,6 +38,45 @@ class RecipeForm(forms.ModelForm):
         }
 
         self.fields['name'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            if self.fields[field].required:
+                placeholder = f'{placeholders[field]} *'
+            else:
+                placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+        self.fields[field].widget.attrs['class'] = 'border-black'
+        self.fields[field].label = False
+
+
+class IngredientForm(forms.ModelForm):
+    """
+    Add ingredient form
+    """
+    class Meta:
+        """
+        class refering to Recipe model and fields
+        to include in form
+        """
+        model = Ingredient
+        fields = [
+            'ingredient_name',
+            'amount',
+            'quantity_type',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        """
+        Add placeholders and classes, remove auto-generated
+        labels and set autofocus on first field
+        """
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'ingredient_name': 'Name',
+            'amount': 'Amount',
+            'quantity_type': 'Measure Type',
+        }
+
+        self.fields['ingredient_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if self.fields[field].required:
                 placeholder = f'{placeholders[field]} *'
