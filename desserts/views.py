@@ -142,7 +142,7 @@ def update_recipe(request, pk_id):
             child.recipe = parent
             child.save()
             messages.success(request, 'Successfully updated recipe!')
-            return redirect(reverse('recipes'))
+            return redirect(reverse('recipes '))
         else:
             messages.error(request, 'Failed to update recipe. Please try again.')
     else:
