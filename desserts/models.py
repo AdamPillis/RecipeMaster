@@ -62,8 +62,8 @@ class Ingredient(models.Model):
     Class to for each ingredient, including pricing / gram
     """
     recipe = models.ForeignKey(Recipe, null=True, blank=False, on_delete=models.CASCADE, related_name='ingredients')
-    ingredient_name = models.CharField(max_length=50, blank=False, null=True)
-    amount = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=False)
+    ingredient_name = models.CharField(max_length=50, blank=True, null=True)
+    amount = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     quantity_type = models.CharField(choices=QUANTITY_TYPE, default=False, max_length=10)
 
     def __str__(self):

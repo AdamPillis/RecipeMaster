@@ -139,10 +139,14 @@ def update_recipe(request, pk_id):
             parent = recipe_form.save(commit=False)
             parent.save()
             child = ingredient_form.save(commit=False)
-            child.recipe = parent
-            child.save()
-            messages.success(request, 'Successfully updated recipe!')
-            return redirect(reverse('recipes '))
+            if not child.ingredient_name:
+                messages.success(request, 'Successfully updated recipe!')
+                return redirect('recipes')
+            else:
+                child.recipe = parent
+                child.save()
+                messages.success(request, 'Successfully updated recipe!')
+                return redirect(reverse('recipes '))
         else:
             messages.error(request, 'Failed to update recipe. Please try again.')
     else:
