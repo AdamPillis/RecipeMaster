@@ -152,7 +152,9 @@ header {
   position: relative;
   padding: 20px 0;
   border-radius: 8px;
-  top: 60%;
+  width: 80%;
+  margin: auto auto;
+  top: 15%;
 }
 
 .category-div {
@@ -293,7 +295,7 @@ header {
 /* full recipes.html */
 .basket-img {
   height: 100px !important;
-  width: 170px;
+  width: 140px;
   border-radius: 12px;
   box-shadow: 10px 10px 8px 10px rgba(0, 0, 0, 0.5);
 }

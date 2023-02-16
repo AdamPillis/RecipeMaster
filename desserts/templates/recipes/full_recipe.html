@@ -13,20 +13,16 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 text-center">
-            <h1 class="my-3 logo-font">{{ recipe.name }}</h1>
-        </div>
-        <div class="col-12">
-            <h2 class="text-center text-white fs-5">Difficulty: {{ recipe.difficulty }}</h2>
-        </div>
-        <div class="col-12 my-3 mb text-center">
-            <a aria-label="back to all recipes" href="{% url 'recipes' %}" class="btn btn1 w-10">
+        <div class="col-12 my-4 mb text-center">
+            <a aria-label="back to all recipes" href="{% url 'recipes' %}" class="btn btn1 w-25 fs-5 p-2">
                 <i class="fas fa-long-arrow-alt-left me-2"></i> All Recipes
             </a>
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+        <div class="col-12 col-md-5 mt-5 justify-content-center mx-auto shadow">
+            <h1 class="my-3 logo-font text-center">{{ recipe.name }}</h1>
+            <h2 class="text-center text-white fs-5">Difficulty: {{ recipe.difficulty }}</h2>
             <div class="image-container mt-5 mb-2">
                 <!-- if product has no image, display general 'none' image in Media -->
                 {% if recipe.image %}
@@ -54,7 +50,7 @@
            
         </div>
         <!-- recipe details section containing recipe information -->
-        <div class="col-12 col-md-6 mt-5 col-lg-4 mx-lg-auto my-auto shadow p-2">
+        <div class="col-12 col-md-5 mt-5 mx-lg-auto mx-auto my-auto shadow p-2">
             <div class="mb-4 text-center">
                 <h2>Ingredients</h2>
                 <div class="text-center my-4">
@@ -73,21 +69,35 @@
             <!-- INGREDIENTS ROW -->
             {% if ingredients %}
                 <div class="row mb-5 mt-md-5" id="ingredient-screen">
-                        
-                    {% for ingredient in ingredients %}
                     <div class="row">
-                        <div class="col-6">
-                            <h3 class="fs-5">{{ ingredient.ingredient_name }}</h3>
+                        <div class="col-6 text-center"><h3 class="fs-4 fw-bold">Ingredients</h3></div>
+                        <div class="col-4 text-center"><h3 class="fs-4 fw-bold">Amount/Unit</h3></div>
+                        <div class="col-2 text-center"><h3 class="fs-4 fw-bold">Delete</h3></div>
+                    </div>
+                    {% for ingredient in ingredients %}
+                    <div class="row border m-0">
+                        <div class="col-5 mx-auto border-end">
+                            <h3 class="fs-5 text-white p-1">{{ ingredient.ingredient_name }}</h3>
                             
                         </div>
-                        <div class="col-6">
+                        <div class="col-5 mx-auto">
                             <div class="row">
-                                <div class="col-6 text-center">
-                                    <h3 value="{{ ingredient.amount }}" class="fw-bold quantity-amount fs-5">{{ ingredient.amount }}</h3>
+                                <div class="col-4 text-center">
+                                    <h3 value="{{ ingredient.amount }}" class="fw-bold text-white quantity-amount p-1 fs-5">{{ ingredient.amount }}</h3>
                                 </div>
-                                <div class="col-6">
-                                    <h3 class="fs-5">({{ ingredient.quantity_type }})</h3>
+                                <div class="col-4 border-end">
+                                    <h3 class="fs-5 text-white p-1">({{ ingredient.quantity_type }})</h3>
                                 </div>
+                                {% if request.user.is_superuser %}
+                                    <div class="col-4 text-center">
+                                        <!-- form is linked with recipe using its id and submit button set to delete recipe if clicked -->
+                                        <form action="{% url 'delete_ingredient' ingredient.id  %}" method="POST">
+                                            {% csrf_token %}
+                                            <button aria-label="submit" class="bg-transparent border-danger m-2 text-center" type="submit" name="Confirm"><strong><i class="fas fa-trash-alt"></i></strong></button>
+                                        
+                                        </form>
+                                    </div>
+                                {% endif %}
                             </div>
                             
                         </div>
@@ -96,7 +106,7 @@
                 </div>
 
                 <div class="row" id="quantity-screen">
-                    <div class="col-8 mx-auto">
+                    <div class="col-12 col-md-8 mx-auto">
                         <form id="quantity-form" method="POST" action="#">
                             {% csrf_token %}
                             <div class="quantity">
@@ -125,8 +135,8 @@
                 <div class="col-12 text-center">
                     <h2>Tools Required</h2>
                 </div>
-                <div class="col-12">
-                    <p>{{ recipe.tools_required|striptags }}</p>
+                <div class="col-8 mx-auto text-center">
+                    <p class="text-white">{{ recipe.tools_required|striptags }}</p>
                 </div>
             </div>
 
@@ -144,36 +154,47 @@
         </div>
     </div>
     <!-- RECIPE STEP GUIDE -->
-    <div class="row mt-4">
+    <div class="row mt-5">
         <div class="col-12 col-md-5 mx-auto text-center shadow p-2">
             <h2>Step Guide</h2>
-            <p>{{ recipe.step_guide|striptags }}</p>
+            <p class="text-white">{{ recipe.step_guide|striptags }}</p>
         </div>
-        <div class="col-12 col-md-5 mx-lg-auto my-auto shadow p-2">
-            <h2 class="my-3 text-center">Other Recipes</h2>
-            {% for link in links %}
-                <div class="row mb-4">
-                    <div class="col-4">
+        <div class="col-12 col-md-5 my-auto mx-auto">
+            <div class="col-12 mx-auto shadow p-3">
+                <h2 class="my-4 p-2 text-center">Other Recipes</h2>
+                <div class="row my-2">
+                {% for link in links %}
+
+                    <div class="col-12 col-lg-5 mx-auto mt-4 text-center shadow">
+                        <a aria-label="{{ link.linked_recipe.name }}" href="{% url 'full_recipe' link.linked_recipe.id %}">
+                            <h4 class="text-white mt-2 mb-3 text-decoration-underline">{{ link.linked_recipe.name }}</h4>
+                            <h6 class="text-white">Prep time: {{ link.linked_recipe.prep_time }}</h6>
+                            <h6 class="text-white">Cooking Time: {{ link.linked_recipe.cooking_time }}</h6>
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-lg-5 mt-4 mx-auto text-center">
                         <a aria-label="{{ link.linked_recipe.name }}" href="{% url 'full_recipe' link.linked_recipe.id %}">
                             {% if link.linked_recipe.image %}
-                                <img class="basket-img rounded" src="{{ link.linked_recipe.image.url }}" alt="{{ link.linked_recipe.name }}">
+                                <img class="basket-img text-center rounded" src="{{ link.linked_recipe.image.url }}" alt="{{ link.linked_recipe.name }}">
                             {% else %}
                                 <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ link.linked_recipe.name }}">
                             {% endif %}
                         </a>
                     </div>
-                    <div class="col-8 text-center">
-                        <h4>{{ link.linked_recipe.name }}</h4>
-                    </div>
-                </div>
-            {% endfor %}
+                        
+                    <hr class="w-75 my-5 mx-auto">
+                    
+                {% endfor %}
+            </div>
+            </div>
         </div>
         
     </div>
    
     <!-- Back to home button -->
     <div class="row">
-        <div class="col-12 mb-5 my-auto text-center">
+        <div class="col-12 mb-5 my-4 text-center">
             <a aria-label="home page" href="{% url 'home' %}" class="btn btn1 mt-0 mb-4">
                 Back to Home
             </a>

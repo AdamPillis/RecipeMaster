@@ -190,3 +190,30 @@ def delete_recipe(request, pk_id):
 
     return render(request, template, context)
 
+
+def delete_ingredient(request, pk_id):
+    """Delete Ingredient"""
+    # only superuser can access this function
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'Sorry but you do not have access to this task.')
+        return redirect(reverse('home'))
+
+    # get recipe id
+    ingredient = get_object_or_404(Ingredient, id=pk_id)
+
+    recipe = ingredient.recipe
+
+    if request.method == 'POST':
+        ingredient.delete()
+        messages.success(request, f'{ingredient.ingredient_name} successfully deleted!')
+        return redirect(reverse('full_recipe', args=[recipe.id]))
+
+    template = 'recipes/recipes.html'
+
+    context = {
+        'ingredient': ingredient,
+    }
+
+    return render(request, template, context)
+
