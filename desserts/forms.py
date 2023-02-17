@@ -1,6 +1,6 @@
 from django import forms
 from home.widgets import CustomClearableFileInput
-from desserts.models import Recipe, Ingredient
+from desserts.models import Recipe, Ingredient, Linked_recipes
 
 
 class RecipeForm(forms.ModelForm):
@@ -87,3 +87,18 @@ class IngredientForm(forms.ModelForm):
         self.fields[field].widget.attrs['class'] = 'border-black'
         self.fields[field].label = False
 
+
+class LinkedRecipeForm(forms.ModelForm):
+    """
+    Add linked recipe form
+    """
+    class Meta:
+        """
+        class refering to Recipe model and fields
+        to include in form
+        """
+        model = Linked_recipes
+        fields = [
+            'linked_recipe',
+            
+        ]

@@ -162,40 +162,47 @@
         <div class="col-12 col-md-5 my-auto mx-auto">
             <div class="col-12 mx-auto shadow p-3">
                 <h2 class="my-4 p-2 text-center">Other Recipes</h2>
+
                 <div class="row my-2">
-                {% for link in links %}
+                    {% if links %}
+                        {% for link in links %}
 
-                    <div class="col-12 col-lg-5 mx-auto mt-4 text-center shadow">
-                        <a aria-label="{{ link.linked_recipe.name }}" href="{% url 'full_recipe' link.linked_recipe.id %}">
-                            <h4 class="text-white mt-2 mb-3 text-decoration-underline">{{ link.linked_recipe.name }}</h4>
-                            <h6 class="text-white">Prep time: {{ link.linked_recipe.prep_time }}</h6>
-                            <h6 class="text-white">Cooking Time: {{ link.linked_recipe.cooking_time }}</h6>
-                        </a>
-                        {% if request.user.is_superuser %}      
-                            <!-- form is linked with recipe using its id and submit button set to delete recipe if clicked -->
-                            <form action="{% url 'delete_linked_recipe' link.linked_recipe.id  %}" method="POST">
-                                {% csrf_token %}
-                                <button aria-label="submit" class="bg-transparent mx-auto border-0 text-danger m-2 text-center" type="submit" name="Confirm"><strong><i class="fas fa-trash-alt"></i></strong></button>
+                            <div class="col-12 col-lg-5 mx-auto mt-4 text-center shadow">
+                                <a aria-label="{{ link.linked_recipe.name }}" href="{% url 'full_recipe' link.linked_recipe.id %}">
+                                    <h4 class="text-white mt-2 mb-3 text-decoration-underline">{{ link.linked_recipe.name }}</h4>
+                                    <h6 class="text-white">Prep time: {{ link.linked_recipe.prep_time }}</h6>
+                                    <h6 class="text-white">Cooking Time: {{ link.linked_recipe.cooking_time }}</h6>
+                                </a>
+                                {% if request.user.is_superuser %}      
+                                    <!-- form is linked with recipe using its id and submit button set to delete recipe if clicked -->
+                                    <form action="{% url 'delete_linked_recipe' link.id  %}" method="POST">
+                                        {% csrf_token %}
+                                        <button aria-label="submit" class="bg-transparent mx-auto border-0 text-danger m-2 text-center" type="submit" name="Confirm"><strong><i class="fas fa-trash-alt"></i></strong></button>
+                                    
+                                    </form> 
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 col-lg-5 mt-4 mx-auto text-center">
+                                <a aria-label="{{ link.linked_recipe.name }}" href="{% url 'full_recipe' link.linked_recipe.id %}">
+                                    {% if link.linked_recipe.image %}
+                                        <img class="basket-img text-center rounded" src="{{ link.linked_recipe.image.url }}" alt="{{ link.linked_recipe.name }}">
+                                    {% else %}
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ link.linked_recipe.name }}">
+                                    {% endif %}
+                                </a>
+                                
+                            </div>
+                                
+                            <hr class="w-75 my-5 mx-auto">
                             
-                            </form> 
-                        {% endif %}
-                    </div>
-
-                    <div class="col-12 col-lg-5 mt-4 mx-auto text-center">
-                        <a aria-label="{{ link.linked_recipe.name }}" href="{% url 'full_recipe' link.linked_recipe.id %}">
-                            {% if link.linked_recipe.image %}
-                                <img class="basket-img text-center rounded" src="{{ link.linked_recipe.image.url }}" alt="{{ link.linked_recipe.name }}">
-                            {% else %}
-                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ link.linked_recipe.name }}">
-                            {% endif %}
-                        </a>
-                        
-                    </div>
-                        
-                    <hr class="w-75 my-5 mx-auto">
-                    
-                {% endfor %}
-            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-12 text-center">
+                            <h4 class=text-white>No recipes linked yet.</h4>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
         

@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.db.models.functions import Lower
 
 from .models import Recipe, Category, Ingredient, Linked_recipes
-from .forms import RecipeForm, IngredientForm
+from .forms import RecipeForm, IngredientForm, LinkedRecipeForm
 
 
 def all_desserts(request):
@@ -137,23 +137,42 @@ def update_recipe(request, pk_id):
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, request.FILES, instance=recipe)
         ingredient_form = IngredientForm(request.POST, request.FILES)
-        if all([recipe_form.is_valid(), ingredient_form.is_valid]):
+        linked_recipe_form = LinkedRecipeForm(request.POST, request.FILES)
+
+        if all([recipe_form.is_valid(), ingredient_form.is_valid(), linked_recipe_form.is_valid()]):
             parent = recipe_form.save(commit=False)
             parent.save()
             child = ingredient_form.save(commit=False)
+            child_two = linked_recipe_form.save(commit=False)
             if not child.ingredient_name:
-                messages.success(request, 'Successfully updated recipe!')
-                return redirect(reverse('full_recipe', args=[recipe.id]))
+                if not child_two.linked_recipe:
+                    messages.success(request, 'Successfully updated recipe!')
+                    return redirect(reverse('full_recipe', args=[recipe.id]))
+                else:
+                    child_two.recipe = parent
+                    child_two.save()
+                    messages.success(request, 'Successfully updated recipe!')
+                    return redirect(reverse('full_recipe', args=[recipe.id]))
             else:
-                child.recipe = parent
-                child.save()
-                messages.success(request, 'Successfully updated recipe!')
-                return redirect(reverse('full_recipe', args=[recipe.id]))
+                if not child_two.linked_recipe:
+                    child.recipe = parent
+                    child.save()
+                    messages.success(request, 'Successfully updated recipe!')
+                    return redirect(reverse('full_recipe', args=[recipe.id]))
+                else:
+                    child_two.recipe = parent
+                    child_two.save()
+                    child.recipe = parent
+                    child.save()
+                    messages.success(request, 'Successfully updated recipe!')
+                    return redirect(reverse('full_recipe', args=[recipe.id]))
+
         else:
             messages.error(request, 'Failed to update recipe. Please try again.')
     else:
         recipe_form = RecipeForm(instance=recipe)
         ingredient_form = IngredientForm()
+        linked_recipe_form = LinkedRecipeForm()
         messages.info(request, f'You are editing {recipe.name}')
 
     template = 'recipes/update_recipe.html'
@@ -161,6 +180,7 @@ def update_recipe(request, pk_id):
         'recipe_form': recipe_form,
         'ingredient_form': ingredient_form,
         'recipe': recipe,
+        'linked_recipe_form': linked_recipe_form,
     }
 
     return render(request, template, context)
