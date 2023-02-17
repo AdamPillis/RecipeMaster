@@ -294,8 +294,8 @@ header {
 
 /* full recipes.html */
 .basket-img {
-  height: 100px !important;
-  width: 140px;
+  height: 150px !important;
+  width: 170px;
   border-radius: 12px;
   box-shadow: 10px 10px 8px 10px rgba(0, 0, 0, 0.5);
 }

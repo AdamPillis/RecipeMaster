@@ -76,4 +76,4 @@ class Linked_recipes(models.Model):
     x
     """
     recipe = models.ForeignKey(Recipe, null=True, blank=False, on_delete=models.CASCADE, related_name='recipe')
-    linked_recipe = models.ForeignKey(Recipe, null=True, blank=False, on_delete=models.CASCADE, related_name='linked')
+    linked_recipe = models.ForeignKey(Recipe, null=True, blank=False, on_delete=models.CASCADE, related_name='linked_recipe')

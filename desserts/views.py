@@ -206,13 +206,40 @@ def delete_ingredient(request, pk_id):
 
     if request.method == 'POST':
         ingredient.delete()
-        messages.success(request, f'{ingredient.ingredient_name} successfully deleted!')
+        messages.success(request, f'"{ingredient.ingredient_name}" successfully deleted!')
         return redirect(reverse('full_recipe', args=[recipe.id]))
 
     template = 'recipes/recipes.html'
 
     context = {
         'ingredient': ingredient,
+    }
+
+    return render(request, template, context)
+
+
+def delete_linked_recipe(request, pk_id):
+    """Delete Linked Recipe"""
+    # only superuser can access this function
+    if not request.user.is_superuser:
+        messages.error(
+            request, 'Sorry but you do not have access to this task.')
+        return redirect(reverse('home'))
+
+    # get linked_recipe id
+    linked_recipe = get_object_or_404(Linked_recipes, id=pk_id)
+
+    recipe = linked_recipe.recipe
+
+    if request.method == 'POST':
+        linked_recipe.delete()
+        messages.success(request, f'"{linked_recipe.linked_recipe}" link removed successfully!')
+        return redirect(reverse('full_recipe', args=[recipe.id]))
+
+    template = 'recipes/recipes.html'
+
+    context = {
+        'linked_recipe': linked_recipe,
     }
 
     return render(request, template, context)

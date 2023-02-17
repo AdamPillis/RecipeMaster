@@ -93,7 +93,7 @@
                                         <!-- form is linked with recipe using its id and submit button set to delete recipe if clicked -->
                                         <form action="{% url 'delete_ingredient' ingredient.id  %}" method="POST">
                                             {% csrf_token %}
-                                            <button aria-label="submit" class="bg-transparent border-danger m-2 text-center" type="submit" name="Confirm"><strong><i class="fas fa-trash-alt"></i></strong></button>
+                                            <button aria-label="submit" class="bg-transparent mx-auto border-0 text-danger m-2 text-center" type="submit" name="Confirm"><strong><i class="fas fa-trash-alt"></i></strong></button>
                                         
                                         </form>
                                     </div>
@@ -171,6 +171,14 @@
                             <h6 class="text-white">Prep time: {{ link.linked_recipe.prep_time }}</h6>
                             <h6 class="text-white">Cooking Time: {{ link.linked_recipe.cooking_time }}</h6>
                         </a>
+                        {% if request.user.is_superuser %}      
+                            <!-- form is linked with recipe using its id and submit button set to delete recipe if clicked -->
+                            <form action="{% url 'delete_linked_recipe' link.linked_recipe.id  %}" method="POST">
+                                {% csrf_token %}
+                                <button aria-label="submit" class="bg-transparent mx-auto border-0 text-danger m-2 text-center" type="submit" name="Confirm"><strong><i class="fas fa-trash-alt"></i></strong></button>
+                            
+                            </form> 
+                        {% endif %}
                     </div>
 
                     <div class="col-12 col-lg-5 mt-4 mx-auto text-center">
@@ -181,6 +189,7 @@
                                 <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ link.linked_recipe.name }}">
                             {% endif %}
                         </a>
+                        
                     </div>
                         
                     <hr class="w-75 my-5 mx-auto">
