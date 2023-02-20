@@ -54,9 +54,11 @@
             <div class="mb-4 text-center">
                 <h2>Ingredients</h2>
                 <div class="text-center my-4">
-                    <a aria-label="home page" href="{% url 'update_recipe' recipe.id %}" class="btn btn1 m-3">
-                        Add Ingredient
-                    </a>
+                    {% if request.user.is_superuser %}
+                        <a aria-label="home page" href="{% url 'update_recipe' recipe.id %}" class="btn btn1 m-3">
+                            Add Ingredient
+                        </a>
+                    {% endif %}
                     <button aria-label="show ingredients" onClick="displayIngredients()" id="ingredient-display" class="btn btn1 m-3">
                         Show Ingredients
                     </button>
@@ -125,7 +127,7 @@
             {% else %}
                 <div class="row mb-5 mt-md-5">
                     <div class="col-12 text-center">
-                        <h2><strong>You haven't added any ingredients yet</strong></h2>
+                        <h2><strong>No ingredients added yet</strong></h2>
                     </div>
                 </div>
             {% endif %}
@@ -194,7 +196,7 @@
                                 
                             </div>
                                 
-                            <hr class="w-75 my-5 mx-auto">
+                            <hr class="w-75 my-5 text-white shadow mx-auto">
                             
                         {% endfor %}
                     {% else %}

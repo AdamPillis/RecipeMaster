@@ -14,11 +14,11 @@
         <div class="row">
             <div class="col text-center mt-4">
                 <h1 class="logo-font">Recipes</h1>
-                <hr class="w-50 my-4 mx-auto">
+                <hr class="w-50 text-white shadow my-4 mx-auto">
                 <!-- displaying category type as a clickable button to filter category type -->
                 {% for c in chosen_categories %}
                     <a aria-label="view recipes in categories" class="btn btn1 text-decoration-none" href="{% url 'recipes' %}?category={{ c.name }}">
-                        <span class="p-2 mt-2 text-black">{{ c.name }}</span>
+                        <span class="p-2 mt-2 text-white">{{ c.name }}</span>
                     </a>
                 {% endfor %}
                 
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 order-md-first">
-                            <p class="text-white mt-3 text-center text-md-left">                                                    
+                            <p class="text-white mt-4 fs-5 text-center text-md-left">                                                    
                                 <!-- django length template filter used to count all found landing page -->
                                 <!-- displays for filtered and if statement if searched -->
                                 Showing (<strong class="logo-font orange-theme"> {{ recipes|length }} </strong>) recipes{% if search_word %} found for <strong>"{{ search_word }}"</strong>{% else %} for your search{% endif %}
@@ -103,35 +103,37 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-6 text-center mb-2">
-                                            <a aria-label="update" class="text-info fs-6" href="{% url 'update_recipe' recipe.id %}"><strong><i class="fas fa-wrench"></i></strong></a>
+                                    {% if request.user.is_superuser %}
+                                        <div class="row">
+                                            <div class="col-6 text-center mb-2">
+                                                <a aria-label="update" class="text-info fs-6" href="{% url 'update_recipe' recipe.id %}"><strong><i class="fas fa-wrench"></i></strong></a>
+                                            </div>
+                                            <div class="col-6 text-center mb-2">
+                                                <a aria-label="delete" class="text-danger fs-6" href="{% url 'delete_recipe' recipe.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
+                                            </div>
                                         </div>
-                                        <div class="col-6 text-center mb-2">
-                                            <a aria-label="delete" class="text-danger fs-6" href="{% url 'delete_recipe' recipe.id %}"><strong><i class="fas fa-trash-alt"></i></strong></a>
-                                        </div>
-                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             <!-- full width for each product on smaller screen, two/three on medium and four on large -->
                             {% if forloop.counter|divisibleby:1 %}
                                 <div class="col-12 d-sm-none mb-5">
-                                    <hr>
+                                    <hr class="w-75 my-4 mx-auto text-white shadow">
                                 </div>
                             {% endif %}                        
                             {% if forloop.counter|divisibleby:2 %}
                                 <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                                    <hr>
+                                    <hr class="w-75 my-4 mx-auto text-white shadow">
                                 </div>
                             {% endif %}
                             {% if forloop.counter|divisibleby:3 %}
                                 <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                                    <hr>
+                                    <hr class="w-75 my-4 mx-auto text-white shadow">
                                 </div>
                             {% endif %}
                             {% if forloop.counter|divisibleby:4 %}
                                 <div class="col-12 d-none d-xl-block mb-5">
-                                    <hr>
+                                    <hr class="w-75 my-4 mx-auto text-white shadow">
                                 </div>
                             {% endif %}
                         {% endfor %}

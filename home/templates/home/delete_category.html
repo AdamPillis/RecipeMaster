@@ -5,38 +5,40 @@
 {% load static %}
 <!-- This page is created as a layer of defence to ensure user
 really wants to delete from database -->
-<div class="container">
-    <div class="row shadow">
-        <div class="col-12 col-md-6 mt-4 mx-auto my-auto shadow">
-
-            <h2 class="text-center">
-                Delete " <strong>{{ category.name }}</strong> "?
-            </h2>
-            {% if category.image %}
-                <div class="text-center">
-                    <img class="card-img-top img-fluid my-4 mx-auto" src="{{ category.image.url }}" alt="{{ category.name }}">
-                </div>
-            {% else %}
-                <div class="text-center">
-                    <img class="card-img-top img-fluid my-4 mx-auto" src="{{ MEDIA_URL }}noimage.png" alt="{{ category.name }}">
-                </div>
-               
-            {% endif %}
-        
-        </div>
+<div class="landing-image">
+    <div class="container-fluid h-100">
         <div class="row">
-            <div class="col-md-6 my-4 mx-auto text-center">
-                <!-- form is linked with category using its id and submit button set to delete category if clicked -->
-                <form action="{% url 'delete_category' category.id %}" method="POST">
-                    {% csrf_token %}
-                    <button aria-label="submit" class="btn btn1 m-3" type="submit" name="Confirm">Submit</button>
-                    <a aria-label="cancel" class="text-decoration-none btn btn1 m-3" href="{% url 'home' %}">
-                        Cancel
-                    </a>
-                </form>
-                          
+            <div class="col-12 col-md-6 mt-4 mx-auto my-auto black-background">
+
+                <h2 class="text-center text-white">
+                    Delete " <strong class="orange-theme">{{ category.name }}</strong> "?
+                </h2>
+                {% if category.image %}
+                    <div class="text-center">
+                        <img class="card-img-top img-fluid my-4 mx-auto" src="{{ category.image.url }}" alt="{{ category.name }}">
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <img class="card-img-top img-fluid my-4 mx-auto" src="{{ MEDIA_URL }}noimage.png" alt="{{ category.name }}">
+                    </div>
+                
+                {% endif %}
+                <div class="row">
+                    <div class="col-md-6 my-4 mx-auto text-center">
+                        <!-- form is linked with category using its id and submit button set to delete category if clicked -->
+                        <form action="{% url 'delete_category' category.id %}" method="POST">
+                            {% csrf_token %}
+                            <button aria-label="submit" class="btn btn1 m-3" type="submit" name="Confirm">Submit</button>
+                            <a aria-label="cancel" class="text-decoration-none btn btn1 m-3" href="{% url 'home' %}">
+                                Cancel
+                            </a>
+                        </form>
+                                
+                    </div>
+                </div>
             </div>
+            
         </div>
-    </div>
-</div>         
+    </div>  
+</div>       
 {% endblock%} 

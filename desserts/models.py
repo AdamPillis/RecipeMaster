@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 
 QUANTITY_TYPE = (
     ("g", "g"),
-    ("ml", "ml")
+    ("ml", "ml"),
+    ("units", "units"),
+    ("teaspoons", "teaspoons")
     )
 
 DIFFICULTY = (

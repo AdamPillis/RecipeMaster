@@ -51,12 +51,9 @@ def all_desserts(request):
         if 'search' in request.GET:
             query = request.GET['search']
             if not query:
-                print('not found')
-                messages.add_message(
-                    request,
-                    messages.ERROR,
-                    "No search criteria recognized, please try again.")
-                return redirect(reverse('recipes'))
+                messages.error(
+                    request, 'Sorry but you do not have access to this task.')
+                return redirect(reverse('home '))
 
             queries = Q(name__icontains=query) | Q(
                 step_guide__icontains=query)
@@ -146,26 +143,26 @@ def update_recipe(request, pk_id):
             child_two = linked_recipe_form.save(commit=False)
             if not child.ingredient_name:
                 if not child_two.linked_recipe:
-                    messages.success(request, 'Successfully updated recipe!')
+                    messages.success(request, f'Successfully updated "{recipe.name}"')
                     return redirect(reverse('full_recipe', args=[recipe.id]))
                 else:
                     child_two.recipe = parent
                     child_two.save()
-                    messages.success(request, 'Successfully updated recipe!')
+                    messages.success(request, f'Successfully updated "{recipe.name}"')
                     return redirect(reverse('full_recipe', args=[recipe.id]))
             else:
                 if not child_two.linked_recipe:
                     child.recipe = parent
                     child.save()
-                    messages.success(request, 'Successfully updated recipe!')
-                    return redirect(reverse('full_recipe', args=[recipe.id]))
+                    messages.success(request, f'Successfully updated "{recipe.name}"')
+                    return redirect(reverse('update_recipe', args=[recipe.id]))
                 else:
                     child_two.recipe = parent
                     child_two.save()
                     child.recipe = parent
                     child.save()
-                    messages.success(request, 'Successfully updated recipe!')
-                    return redirect(reverse('full_recipe', args=[recipe.id]))
+                    messages.success(request, f'Successfully updated "{recipe.name}"')
+                    return redirect(reverse('update_recipe', args=[recipe.id]))
 
         else:
             messages.error(request, 'Failed to update recipe. Please try again.')
@@ -173,7 +170,7 @@ def update_recipe(request, pk_id):
         recipe_form = RecipeForm(instance=recipe)
         ingredient_form = IngredientForm()
         linked_recipe_form = LinkedRecipeForm()
-        messages.info(request, f'You are editing {recipe.name}')
+        messages.info(request, f'You are editing "{recipe.name}"')
 
     template = 'recipes/update_recipe.html'
     context = {

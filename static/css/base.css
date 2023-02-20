@@ -9,6 +9,10 @@ html {
   margin: auto;
 }
 
+.main-logo-size {
+  font-size: 4.5rem;
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -43,8 +47,12 @@ header {
     }
 
 .black-background {
-  background: rgba(8, 8, 8, 0.4);
+  background: rgba(8, 8, 8, 0.6) !important;
   border-radius: 6px;
+}
+
+.dropdown-background {
+  background: rgba(101, 100, 100, 0.6) !important;
 }
 
 .body-background {
@@ -53,6 +61,10 @@ header {
 }
 
 .orange-theme {
+  color: rgba(255, 119, 0, 1);
+}
+
+.orange-color {
   color: rgba(255, 119, 0, 1);
 }
 
@@ -78,6 +90,7 @@ header {
   transition: 1s all ease;
   z-index: 100000;
 }
+
 .btn::before{
   background: rgba(255, 119, 0, 1);
   color: #fff;
@@ -90,8 +103,9 @@ header {
   transition: all 0.5s ease;
 } */
 /* general button hover effect */
-.btn1:hover {
+.btn:hover {
   color: #fff;
+  background-color: rgba(255, 119, 0, 1);
 }
 .btn1::before{
   width: 0%;
@@ -148,7 +162,8 @@ header {
 }
 
 .landing-image .container-fluid .text-center {
-  background-color: rgba(0, 0, 0, 0.8);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-color: transparent;
   position: relative;
   padding: 20px 0;
   border-radius: 8px;
@@ -179,6 +194,7 @@ header {
 
 .card-img {
   width: 100%;
+  max-height: 500px;
   margin: 5px auto;
   box-shadow: 10px 10px 8px 10px rgba(0, 0, 0, 0.5);
 }

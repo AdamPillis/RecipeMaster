@@ -13,15 +13,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center my-3">
-                <h1 class="logo-font mt-3">Update Recipe</h1>
-                <hr class="w-50 my-4 mx-auto">
+                <h1 class="logo-font mt-3">{{ recipe.name }}</h1>
+                <hr class="w-50 my-4 text-white mx-auto">
                 <!-- Welcoming user using their username -->
             </div>
+        </div>
+        <div class="text-center mb-3">
+            <a aria-label="cancel" class="btn btn1 w-25 me-2" href="{% url 'full_recipe' recipe.id %}">Back To Recipe</a>
         </div>
         <!-- Add_product form rendered as crispy -->
         <div class="row">
             <div class="col-12 col-md-5 mx-auto">
-                <h2 class="text-center">{{ recipe.name }}</h2>
                 <div class="image-container mt-5 mb-2">
                     <!-- if product has no image, display general 'none' image in Media -->
                     {% if recipe.image %}
@@ -50,7 +52,7 @@
                                 {% endfor %}
                             {% endfor %}
                         {% endif %}
-                        <h3 id="recipe" class="my-3">Recipe</h3>
+                        <h3 id="recipe" class="my-3">Main Recipe</h3>
                         {% for field in recipe_form %}
                             {% if field.name != 'image' %}
                                 {{ field | as_crispy_field }}
@@ -58,8 +60,10 @@
                                 {{ field }}
                             {% endif %}
                         {% endfor %}
-
+                        <!-- INGREDIENT FORM SECTION -->
                         {% if ingredient_form %}
+                        <hr class="w-75 text-white mx-auto my-4">
+
                         <h3 id="ingredients" class="my-3">Ingredients</h3>
                             {% for field in ingredient_form %}
                                 {% if field.name != 'image' %}
@@ -69,8 +73,10 @@
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
-
+                        <!-- IF LINKED RECIPES -->
                         {% if linked_recipe_form %}
+                        <hr class="w-75 text-white mx-auto my-4">
+
                         <h3 id="links" class="my-3">Link Recipes</h3>
                             {% for field in linked_recipe_form %}
                                 {% if field.name != 'image' %}
@@ -83,7 +89,7 @@
                         
                         <!-- submit button and cancel button for product_form -->
                         <div class="text-center my-3">
-                            <a aria-label="cancel" class="btn btn1 me-2" href="{% url 'recipes' %}">Cancel</a>
+                            <a aria-label="cancel" class="btn btn1 me-2" href="{% url 'full_recipe' recipe.id %}">Cancel</a>
                             <button aria-label="update recipe" class="btn btn1" type="submit">Update Recipe</button>
                         </div>
                     </form>

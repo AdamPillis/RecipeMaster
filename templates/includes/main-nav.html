@@ -2,80 +2,46 @@
     <ul class="navbar-nav nav w-auto mx-auto">
         <!-- account -->
         <li  class="dropdown nav-item d-block d-lg-none">
-            <a aria-label="all product" class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <a aria-label="account" class="dropdown-toggle text-white my-2" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
               Account
             </a>
           
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <ul class="dropdown-menu dropdown-background" aria-labelledby="dropdownMenuLink">
             {% if request.user.is_authenticated %}
-                <li><a aria-label="home page" class="dropdown-item" href="{% url 'home' %}">Home</a></li>
-                <li><a aria-label="my profile" class="dropdown-item" href="#">My Profile</a></li>
-                <li><a aria-label="log out" class="dropdown-item" href="{% url 'account_logout' %}">Log Out</a></li>
+                <li><a aria-label="home page" class="dropdown-item orange-theme fw-bold" href="{% url 'home' %}">Home</a></li>
+                <li><a aria-label="log out" class="dropdown-item orange-theme fw-bold" href="{% url 'account_logout' %}">Log Out</a></li>
                 {% if request.user.is_superuser %}
-                    <li><a aria-label="add product" href="#" class="dropdown-item">Add Product</a></li>
-                    <li><a aria-label="admin panel" href="{% url 'admin:index' %}" class="dropdown-item">Admin Panel</a></li>
-                    <li><a aria-label="register" class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                    <li><a aria-label="admin panel" href="{% url 'admin:index' %}" class="dropdown-item orange-theme fw-bold">Admin Panel</a></li>
                 {% endif %}
             {% else %}
-                <li><a aria-label="log in" class="dropdown-item" href="{% url 'account_login' %}">Log In</a></li>
+                <li><a aria-label="log in" class="dropdown-item orange-theme fw-bold" href="{% url 'account_login' %}">Log In</a></li>
             {% endif %}
             </ul>
         </li>
 
         <li  class="dropdown nav-item">
-            <a aria-label="all product" class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              All Recipes
+            <a aria-label="categories" class="dropdown-toggle text-white my-2" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              Categories
             </a>
           
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a aria-label="By Price" class="dropdown-item" href="#">By Price</a></li>
-                <li><a aria-label="By Rating" class="dropdown-item" href="#">By Rating</a></li>
-                <li><a aria-label="By Category" class="dropdown-item" href="#">By Category</a></li>
-                <li><a aria-label="By Brand" class="dropdown-item" href="#">By Brand</a></li>
-                <li><a aria-label="By Condition" class="dropdown-item" href="#">By Condition</a></li>
-                <li><a aria-label="All Products" class="dropdown-item" href="#">All Products</a></li>
+            <ul class="dropdown-menu dropdown-background" aria-labelledby="dropdownMenuLink">
+                <li><a aria-label="All categories" class="dropdown-item orange-theme fw-bold" href="{% url 'home' %}">All Categories</a></li>
+                {% if request.user.is_superuser %}
+                    <li><a aria-label="add category" href="{% url 'add_category' %}" class="dropdown-item orange-theme fw-bold">Add Category</a></li>
+                {% endif %}
             </ul>
         </li>
 
         <li class="dropdown nav-item">
-            <a aria-label="Golf Clubs" class="btn dropdown-toggle" href="#" role="button" id="dropdownClubsLink" data-bs-toggle="dropdown" aria-expanded="false">
-              Golf Clubs
+            <a aria-label="Golf Clubs" class="dropdown-toggle text-white my-2" href="#" role="button" id="dropdownClubsLink" data-bs-toggle="dropdown" aria-expanded="false">
+              Recipes
             </a>
           
-            <ul class="dropdown-menu" aria-labelledby="dropdownClubsLink">
-                <li><a aria-label="Putters" class="dropdown-item" href="#">Putters</a></li>
-                <li><a aria-label="Irons" class="dropdown-item" href="#">Irons</a></li>
-                <li><a aria-label="Sandwedges" class="dropdown-item" href="#">Sandwedges</a></li>
-                <li><a aria-label="Woods" class="dropdown-item" href="#">Woods</a></li>
-                <li><a aria-label="Drivers" class="dropdown-item" href="#">Drivers</a></li>
-                <li><a aria-label="All Clubs" class="dropdown-item" href="#">All Clubs</a></li>
-            </ul>
-        </li>
-
-        <li class="dropdown nav-item">
-            <a aria-label="Accessories" class="btn dropdown-toggle" href="#" role="button" id="dropdownAccessLink" data-bs-toggle="dropdown" aria-expanded="false">
-              Accessories
-            </a>
-          
-            <ul class="dropdown-menu" aria-labelledby="dropdownAccessLink">
-                <li><a aria-label="Tees" class="dropdown-item" href="#">Tees</a></li>
-                <li><a aria-label="Gloves" class="dropdown-item" href="#">Gloves</a></li>
-                <li><a aria-label="Golf Balls" class="dropdown-item" href="#">Golf Balls</a></li>
-                <li><a aria-label="Caps" class="dropdown-item" href="#">Caps</a></li>
-                <li><a aria-label="All Accessories" class="dropdown-item" href="#">All Accessories</a></li>
-            </ul>
-        </li>
-
-        <li class="dropdown nav-item">
-            <a aria-label="Best Offers" class="btn dropdown-toggle" href="#" role="button" id="dropdownOffersLink" data-bs-toggle="dropdown" aria-expanded="false">
-                Best Offers
-            </a>
-          
-            <ul class="dropdown-menu" aria-labelledby="dropdownOffersLink">
-                <li><a aria-label="New In" class="dropdown-item" href="#">New In</a></li>
-                <li><a aria-label="Deals" class="dropdown-item" href="#">Deals</a></li>
-                <li><a aria-label="Clearance" class="dropdown-item" href="#">Clearance</a></li>
-                <li><a aria-label="All Offers" class="dropdown-item" href="#">All Offers</a></li>
+            <ul class="dropdown-menu dropdown-background" aria-labelledby="dropdownClubsLink">
+                <li><a aria-label="All recipes" class="dropdown-item orange-theme fw-bold" href="{% url 'recipes' %}">All Recipes</a></li>
+                {% if request.user.is_superuser %}
+                    <li><a aria-label="add recipe" href="{% url 'add_recipe' %}" class="dropdown-item orange-theme fw-bold">Add Recipe</a></li>
+                {% endif %}
             </ul>
         </li>
     </ul>
