@@ -56,6 +56,10 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
+# Telling cripsy forms to use bootstrap 4 template pack
+# through which classes will work the same
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
