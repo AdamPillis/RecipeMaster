@@ -1,0 +1,317 @@
+html {
+    
+  }
+
+.main-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5rem;
+  padding: 0;
+  margin: auto;
+}
+
+.main-logo-size {
+  font-size: 4.5rem;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgba(8, 8, 8, 0.6);
+  }
+
+  /* setting font styles */
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Gideon Roman', cursive;
+  color: rgba(255, 119, 0, 1);
+  font-weight: 500;
+}
+
+button, a, small {
+font-family: 'Raleway', sans-serif;
+font-size: 1.2rem;
+color: white;
+}
+
+a {
+color: rgb(255, 119, 0);
+text-decoration: none;
+}
+a:hover {
+color: white;
+}
+
+header {
+    position: relative;
+    z-index: 50;
+    background: rgba(8, 8, 8, 0.8);
+    }
+
+.black-background {
+  background: rgba(8, 8, 8, 0.6) !important;
+  border-radius: 6px;
+}
+
+.dropdown-background {
+  background: rgba(101, 100, 100, 0.6) !important;
+}
+
+.body-background {
+  background: rgba(8, 8, 8, 0.1);
+  border-radius: 6px;
+}
+
+.orange-theme {
+  color: rgba(255, 119, 0, 1);
+}
+
+.orange-color {
+  color: rgba(255, 119, 0, 1);
+}
+
+.login-logo {
+  font-size: 3.5rem;
+  margin: 20px auto;
+  top: 0 !important;
+}
+    /* setting general button design */
+/* design idea from 'Animated CSS Buttons'  */
+.btn{
+  position: relative;
+  min-width: 130px;
+  color: white;
+  font-size: 14px;
+  font-family: "montserrat";
+  border: 0;
+  margin: 0 auto;
+  text-decoration: none;
+  border: 1px solid rgba(255, 119, 0, 1);
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 1s all ease;
+  z-index: 100000;
+}
+
+.btn::before{
+  background: rgba(255, 119, 0, 1);
+  color: #fff;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+  transition: all 0.5s ease;
+} */
+/* general button hover effect */
+.btn:hover {
+  color: #fff;
+  background-color: rgba(255, 119, 0, 1);
+}
+.btn1::before{
+  width: 0%;
+  height: 100%;
+  color: white;
+}
+.btn1:hover::before{
+  width: 100%;
+  color: white;
+}
+
+.input {
+  display: none;
+}
+
+.search_button {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+
+.trigger_search {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  border: 0;
+  background-color: transparent;
+  color:rgba(255, 119, 0, 1);
+}
+
+#hide-display {
+  display: none;
+}
+
+/* index.html */
+.landing-image {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.landing-image .container-fluid {
+  background: url('/media/landing-page-image.jpg') center;
+  background-size: cover;
+  margin: 0px auto;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.landing-image .container-fluid .text-center {
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-color: transparent;
+  position: relative;
+  padding: 20px 0;
+  border-radius: 8px;
+  width: 80%;
+  margin: auto auto;
+  top: 15%;
+}
+
+.category-div {
+  box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* footer section in base.html */
+.footer {
+    position: relative;
+    z-index: 1000;
+  }
+
+/* recipes.html */
+
+.recipe-image {
+  width: 90%;
+  height: 250px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 8px 10px rgba(0, 0, 0, 0.5);
+  
+}
+
+.card-img {
+  width: 100%;
+  max-height: 500px;
+  margin: 5px auto;
+  box-shadow: 10px 10px 8px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-img-fluid {
+  max-width: 130%;
+}
+
+/* recipes.html */
+/* image styling for categories */
+.card-img-top {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  /* margin: 5vh auto; */
+}
+
+.img-fluid {
+  max-width: 130%;
+}
+
+/* setting position of back to the top button in */
+.btt-button {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 20%;
+  right: 15px;
+}
+
+.top-btt,
+.update-link,
+.remove-item {
+  cursor: pointer;
+}
+
+/* form box where user enters their player name and the data is posted to be used in other sections */
+.quantity {
+  background: transparent;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px 4px;
+  border-radius: 10px;
+}
+.quantity label {
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin: 5px auto;
+  width: 100%;
+  color: black;
+}
+#quantity {
+  height: 5vh;
+  width: 50%;
+  margin: 10px auto;
+  background: transparent;
+  border-radius: 10px;
+  color: black;
+  font-size: 1.5rem;
+  box-shadow: 0 0 2px 1px;
+  background-color: rgba(39, 69, 84, 0.3); /* original hsl body color converted to rgba for ligher contrast in text box*/
+
+}
+
+
+/* menu-screen section which comes after player name submition */
+#ingredient-screen {
+  display: none;
+}
+
+/* FORM SETTINGs */
+
+.form_border {
+  box-shadow: 5px 10px #888888;
+}
+
+.control-label {
+  display: none;
+}
+
+.checkbox {
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
+
+.controls input {
+  border: 2px solid grey;
+  margin: 15px auto;
+  border-radius: 8px;
+  width: 75%;
+  padding: 8px;
+  background-color: transparent;
+  color: white;
+}
+
+.controls textarea {
+  width: 80%;
+  background-color: transparent;
+  border-radius: 5px;
+  color: white;
+  margin: 15px auto;
+}
+
+.controls select {
+  width: 40%;
+  background-color: rgba(8, 8, 8, 0.7);
+  border-radius: 5px;
+  color: white;
+  margin: 15px auto;
+  padding: 5px;
+}
+
+/* full recipes.html */
+.basket-img {
+  height: 150px !important;
+  width: 170px;
+  border-radius: 12px;
+  box-shadow: 10px 10px 8px 10px rgba(0, 0, 0, 0.5);
+}
