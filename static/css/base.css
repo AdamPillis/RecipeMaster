@@ -22,8 +22,7 @@ body {
   /* setting font styles */
 h1, h2, h3, h4, h5, h6{
   font-family: 'Gideon Roman', cursive;
-  /* color: rgba(255, 119, 0, 1); */
-  color: rgba(8, 8, 8, 0.5) !important;
+  color: rgba(255, 119, 0, 1);
   font-weight: 500;
 }
 
@@ -44,7 +43,7 @@ color: white;
 header {
     position: relative;
     z-index: 50;
-    /* background: rgba(8, 8, 8, 0.8); */
+    background: rgba(8, 8, 8, 0.8);
     }
 
 .black-background {
@@ -120,23 +119,49 @@ header {
 
 .input {
   display: none;
+  height: 50px !important;
+  margin: 0 !important;
+  padding: 6px !important;
 }
 
 /* GENERAL INPUT STYLE FOR FORMS */
 input {
-  color: red;
+  margin: 10px auto;
+  width: 70%;
+  border-radius: 5px;
+  padding: 5px;
+  height: 40px;
+  font-size: 14px;
+}
+
+select, textarea {
+  margin: 10px auto;
+  width: 70%;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 5px;
 }
 
 label {
-  display: none !important;
+  display: none;
+}
+
+.checkbox {
+  width: 30% !important;
+  margin: 2px auto;
+}
+
+.checkbox label {
+  display: unset !important;
 }
 
 .search_button {
   border: 0;
   outline: 0;
   cursor: pointer;
-  height: 50px;
+  height: 100% !important;
   width: 50px;
+  margin: auto !important;
 }
 
 .trigger_search {
@@ -177,7 +202,6 @@ label {
   position: relative;
   padding: 20px 0;
   border-radius: 8px;
-  width: 80%;
   margin: auto auto;
   top: 15%;
 }

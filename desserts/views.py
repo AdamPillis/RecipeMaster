@@ -51,9 +51,8 @@ def all_desserts(request):
         if 'search' in request.GET:
             query = request.GET['search']
             if not query:
-                messages.error(
-                    request, 'Sorry but you do not have access to this task.')
-                return redirect(reverse('home '))
+                messages.error(request, 'No criteria found. Please try again.')
+                return redirect(reverse('home'))
 
             queries = Q(name__icontains=query) | Q(
                 step_guide__icontains=query)
