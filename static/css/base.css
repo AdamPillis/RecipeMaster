@@ -22,7 +22,8 @@ body {
   /* setting font styles */
 h1, h2, h3, h4, h5, h6{
   font-family: 'Gideon Roman', cursive;
-  color: rgba(255, 119, 0, 1);
+  /* color: rgba(255, 119, 0, 1); */
+  color: rgba(8, 8, 8, 0.5) !important;
   font-weight: 500;
 }
 
@@ -43,7 +44,7 @@ color: white;
 header {
     position: relative;
     z-index: 50;
-    background: rgba(8, 8, 8, 0.8);
+    /* background: rgba(8, 8, 8, 0.8); */
     }
 
 .black-background {
@@ -84,7 +85,7 @@ header {
   border: 0;
   margin: 0 auto;
   text-decoration: none;
-  border: 1px solid rgba(255, 119, 0, 1);
+  border: 2px solid rgba(255, 119, 0, 1);
   text-transform: uppercase;
   overflow: hidden;
   transition: 1s all ease;
@@ -119,6 +120,15 @@ header {
 
 .input {
   display: none;
+}
+
+/* GENERAL INPUT STYLE FOR FORMS */
+input {
+  color: red;
+}
+
+label {
+  display: none !important;
 }
 
 .search_button {
